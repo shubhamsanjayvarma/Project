@@ -315,6 +315,8 @@
     }
 
     .shop-products .grid-3 {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+        /* Tight gap for 2 columns on mobile */
     }
 }
