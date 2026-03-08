@@ -193,33 +193,33 @@ const AdminProducts = () => {
                         ) : filteredProducts.length === 0 ? (
                             <tr><td colSpan={8} style={{ textAlign: 'center', padding: '40px', color: 'var(--text-muted)' }}>No products found</td></tr>
                         ) : filteredProducts.map(product => (
-                            <tr key={product.id}>
-                                <td>
+                            <tr key={product.id} className="ap-product-row">
+                                <td className="ap-td-img">
                                     {product.images?.[0] ? (
                                         <SmartMedia src={product.images[0]} alt="" className="ap-table-thumb" style={{ width: '100%', height: '100%', objectFit: 'cover' }} videoProps={{ autoPlay: false }} />
                                     ) : <div className="ap-table-thumb ap-no-img"><FiImage size={16} /></div>}
                                 </td>
-                                <td>
+                                <td className="ap-td-name">
                                     <strong>{product.name}</strong>
                                     {product.featured && <FiStar size={12} style={{ color: '#ECC94B', marginLeft: 6 }} />}
                                 </td>
-                                <td><span className="ap-brand-badge">{product.brand || '—'}</span></td>
-                                <td>{defaultCategories.find(c => c.slug === product.category)?.name || product.category}</td>
-                                <td>
+                                <td className="ap-td-brand"><span className="ap-brand-badge">{product.brand || '—'}</span></td>
+                                <td className="ap-td-category">{defaultCategories.find(c => c.slug === product.category)?.name || product.category}</td>
+                                <td className="ap-td-price">
                                     <strong>{formatPrice(product.price)}</strong>
                                     {product.comparePrice && <span className="ap-compare-price">{formatPrice(product.comparePrice)}</span>}
                                 </td>
-                                <td>
+                                <td className="ap-td-stock">
                                     <span className={`ap-stock-badge ${(product.stock || 0) <= (product.lowStockAlert || 3) ? 'low' : ''}`}>
                                         {product.stock || 0}
                                     </span>
                                 </td>
-                                <td>
+                                <td className="ap-td-status">
                                     <span className={`ap-visibility-dot ${product.visibility || 'active'}`}>
                                         {VISIBILITY_OPTIONS.find(v => v.value === (product.visibility || 'active'))?.icon}
                                     </span>
                                 </td>
-                                <td>
+                                <td className="ap-td-actions">
                                     <div className="admin-table-actions">
                                         <button className="btn btn-ghost btn-sm" onClick={() => openEdit(product)}><FiEdit size={14} /></button>
                                         <button className="btn btn-ghost btn-sm" onClick={() => handleDelete(product.id)} style={{ color: 'var(--error)' }}><FiTrash2 size={14} /></button>

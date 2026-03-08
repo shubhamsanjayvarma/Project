@@ -294,27 +294,44 @@ const ProductDetail = () => {
                         </div>
 
                         {/* Actions */}
-                        <div className="product-actions">
-                            <button className="btn btn-primary btn-lg" onClick={handleAddToCart} disabled={product.stock <= 0} style={{ flex: 1 }}>
-                                <FiShoppingBag /> Add to Cart
-                            </button>
-                            <button
-                                className={`btn btn-outline btn-lg btn-icon ${isInWishlist(product.id) ? 'wishlist-active' : ''}`}
-                                onClick={async () => {
-                                    if (!user) { toast.error('Please log in to save items'); navigate('/login'); return; }
-                                    const added = await toggleItem(product);
-                                    toast.success(added ? 'Added to wishlist' : 'Removed from wishlist');
-                                }}
-                            >
-                                <FiHeart size={20} style={isInWishlist(product.id) ? { fill: '#ff4444', color: '#ff4444' } : {}} />
-                            </button>
-                            <button className="btn btn-outline btn-lg btn-icon" onClick={handleShare}>
-                                <FiShare2 size={18} />
-                            </button>
+                        <div className="product-actions-container">
+                            <div className="product-actions-secondary">
+                                <button
+                                    className={`btn btn-action-icon ${isInWishlist(product.id) ? 'wishlist-active' : ''}`}
+                                    onClick={async () => {
+                                        if (!user) { toast.error('Please log in to save items'); navigate('/login'); return; }
+                                        const added = await toggleItem(product);
+                                        toast.success(added ? 'Added to wishlist' : 'Removed from wishlist');
+                                    }}
+                                >
+                                    <FiHeart size={20} style={isInWishlist(product.id) ? { fill: '#ff4444', color: '#ff4444' } : {}} />
+                                    <span>Wishlist</span>
+                                </button>
+                                <button className="btn btn-action-icon" onClick={handleShare}>
+                                    <FiShare2 size={18} />
+                                    <span>Share</span>
+                                </button>
+                            </div>
+
+                            <div className="product-actions-sticky">
+                                <div className="sticky-mobile-info">
+                                    <span className="sticky-price">{formatPrice(currentPrice * quantity)}</span>
+                                    {product.stock > 0 ? (
+                                        <span className="sticky-stock in-stock">In Stock</span>
+                                    ) : (
+                                        <span className="sticky-stock out-stock">Out of Stock</span>
+                                    )}
+                                </div>
+                                <div className="sticky-buttons">
+                                    <button className="btn btn-add-cart" onClick={handleAddToCart} disabled={product.stock <= 0}>
+                                        <FiShoppingBag size={20} /> <span className="btn-text">Add to Cart</span>
+                                    </button>
+                                    <button className="btn btn-buy-now" onClick={handleBuyNow} disabled={product.stock <= 0}>
+                                        <FiZap size={20} className="buy-icon" /> Buy Now
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <button className="btn btn-buy-now btn-lg w-full" onClick={handleBuyNow} disabled={product.stock <= 0}>
-                            <FiZap /> Buy Now
-                        </button>
 
                         {/* Tags */}
                         {product.tags?.length > 0 && (

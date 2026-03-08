@@ -88,17 +88,17 @@ const AdminOrders = () => {
                         </thead>
                         <tbody>
                             {filteredOrders.map(order => (
-                                <tr key={order.id}>
-                                    <td><strong>{order.id.substring(0, 8)}...</strong></td>
-                                    <td>{order.userEmail}</td>
-                                    <td>
+                                <tr key={order.id} className="ap-order-row">
+                                    <td className="ap-td-id"><strong>#{order.id.substring(0, 8)}</strong></td>
+                                    <td className="ap-td-email">{order.userEmail}</td>
+                                    <td className="ap-td-shipping">
                                         <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-secondary)' }}>
                                             {order.shippingAddress?.city}{order.shippingAddress?.region ? `, ${order.shippingAddress.region}` : ''}, {order.shippingAddress?.country}
                                         </span>
                                     </td>
-                                    <td>{formatPrice(order.total)}</td>
-                                    <td><span className={`badge badge-${ORDER_STATUSES[order.status]?.color}`}>{ORDER_STATUSES[order.status]?.icon} {ORDER_STATUSES[order.status]?.label}</span></td>
-                                    <td>
+                                    <td className="ap-td-total">{formatPrice(order.total)}</td>
+                                    <td className="ap-td-status"><span className={`badge badge-${ORDER_STATUSES[order.status]?.color}`}>{ORDER_STATUSES[order.status]?.icon} {ORDER_STATUSES[order.status]?.label}</span></td>
+                                    <td className="ap-td-actions">
                                         <div className="admin-table-actions">
                                             <button className="btn btn-ghost btn-sm" onClick={() => setSelectedOrder(order)}><FiEye size={14} /> View</button>
                                             <button className="btn btn-ghost btn-sm" onClick={() => sendShippingToWhatsApp(order)} style={{ color: '#25D366' }}><FaWhatsapp size={14} /></button>

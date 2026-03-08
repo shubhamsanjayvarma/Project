@@ -104,8 +104,9 @@ const AdminUsers = () => {
                                             initial={{ opacity: 0, y: 10 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ delay: idx * 0.03 }}
+                                            className="ap-user-row"
                                         >
-                                            <td>
+                                            <td className="ap-td-user">
                                                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                                                     {user.photoURL ? (
                                                         <img src={user.photoURL} alt="" style={{ width: 32, height: 32, borderRadius: '50%', objectFit: 'cover' }} />
@@ -117,9 +118,9 @@ const AdminUsers = () => {
                                                     <strong>{user.displayName || 'Unnamed'}</strong>
                                                 </div>
                                             </td>
-                                            <td>{user.email}</td>
-                                            <td>{formatDate(user.createdAt)}</td>
-                                            <td>{formatDate(user.lastLogin)}</td>
+                                            <td className="ap-td-email">{user.email}</td>
+                                            <td className="ap-td-registered">{formatDate(user.createdAt)}</td>
+                                            <td className="ap-td-login">{formatDate(user.lastLogin)}</td>
                                         </motion.tr>
                                     ))}
                                 </tbody>
@@ -156,15 +157,16 @@ const AdminUsers = () => {
                                             initial={{ opacity: 0, y: 10 }}
                                             animate={{ opacity: 1, y: 0 }}
                                             transition={{ delay: idx * 0.03 }}
+                                            className="ap-sub-row"
                                         >
-                                            <td>
+                                            <td className="ap-td-email">
                                                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                                                     <FiMail size={14} style={{ color: 'var(--admin-text-muted)' }} />
                                                     {sub.email}
                                                 </div>
                                             </td>
-                                            <td>{formatDate(sub.createdAt || sub.subscribedAt)}</td>
-                                            <td>
+                                            <td className="ap-td-date">{formatDate(sub.createdAt || sub.subscribedAt)}</td>
+                                            <td className="ap-td-actions">
                                                 <button className="btn btn-ghost btn-sm" onClick={() => handleDeleteSubscriber(sub.id)} style={{ color: '#ff4444' }}>
                                                     <FiTrash2 size={14} /> Remove
                                                 </button>

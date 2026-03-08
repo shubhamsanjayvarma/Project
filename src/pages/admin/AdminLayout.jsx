@@ -53,13 +53,13 @@ const AdminLayout = () => {
 
     return (
         <div className="admin-layout admin-theme">
-            {/* Mobile overlay backdrop */}
-            {isMobile && sidebarOpen && (
+            {/* Mobile overlay backdrop for tablet sidebar */}
+            {isMobile && window.innerWidth > 768 && sidebarOpen && (
                 <div className="admin-sidebar-overlay" onClick={() => setSidebarOpen(false)} />
             )}
 
-            {/* Sidebar */}
-            <aside className={`admin-sidebar ${sidebarOpen ? 'open' : 'closed'}`}>
+            {/* Desktop / Tablet Sidebar */}
+            <aside className={`admin-sidebar ${sidebarOpen ? 'open' : 'closed'} hide-on-mobile`}>
                 <div className="admin-sidebar-header">
                     <img src={logo} alt="Second Thrift" className="admin-logo" />
                     <span className="admin-label">Admin Panel</span>
@@ -88,14 +88,37 @@ const AdminLayout = () => {
                 </div>
             </aside>
 
-            {/* Main */}
+            {/* Mobile Bottom Navigation (Only visible on phones <= 768px) */}
+            <nav className="admin-bottom-nav">
+                {navItems.map(item => (
+                    <Link
+                        key={item.to}
+                        to={item.to}
+                        className={`admin-bottom-link ${isActive(item.to, item.exact) ? 'active' : ''}`}
+                    >
+                        {item.icon}
+                        <span>{item.label}</span>
+                    </Link>
+                ))}
+            </nav>
+
+            {/* Main Content */}
             <main className="admin-main">
                 <header className="admin-header">
-                    <button className="admin-menu-toggle" onClick={() => setSidebarOpen(!sidebarOpen)}>
-                        {sidebarOpen ? <FiX /> : <FiMenu />}
-                    </button>
+                    <div className="admin-header-left">
+                        <button className="admin-menu-toggle hide-on-mobile" onClick={() => setSidebarOpen(!sidebarOpen)}>
+                            {sidebarOpen ? <FiX /> : <FiMenu />}
+                        </button>
+                        {/* Mobile Header Logo */}
+                        <img src={logo} alt="Second Thrift" className="admin-header-logo show-on-mobile" />
+                    </div>
+
                     <div className="admin-header-info">
-                        <span className="admin-welcome">Welcome, Ketan Bhai Suresh Bhai Gorasava</span>
+                        <span className="admin-welcome hide-on-mobile">Admin: {user?.email}</span>
+                        <div className="admin-header-actions show-on-mobile">
+                            <Link to="/" className="admin-icon-btn"><FiHome size={20} /></Link>
+                            <button className="admin-icon-btn" onClick={() => signOutUser()}><FiLogOut size={20} /></button>
+                        </div>
                     </div>
                 </header>
                 <div className="admin-content">
