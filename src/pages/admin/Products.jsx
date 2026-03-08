@@ -106,14 +106,19 @@ const AdminProducts = () => {
             setMediaFiles([]);
         } catch (err) {
             console.error(err);
-            toast.error('Failed to save product');
+            toast.error(err.message || 'Failed to save product/media');
         } finally { setSaving(false); }
     };
 
     const handleDelete = async (id) => {
-        if (window.confirm('Delete this product permanently?')) {
-            try { await deleteProduct(id); toast.success('Product deleted.'); }
-            catch (err) { console.error(err); toast.error('Failed to delete'); }
+        // Automatically delete without blocking 'window.confirm' which fails on mobile/embedded browsers
+        try {
+            toast.loading('Deleting...', { id: 'delete-toast' });
+            await deleteProduct(id);
+            toast.success('Product permanently deleted.', { id: 'delete-toast' });
+        } catch (err) {
+            console.error(err);
+            toast.error(err.message || 'Failed to delete product', { id: 'delete-toast' });
         }
     };
 

@@ -10,9 +10,13 @@ export const uploadProductMedia = async (file) => {
         body: formData,
     });
 
+    if (res.status === 413) {
+        throw new Error('File too large. Vercel only allows up to 4.5MB per file.');
+    }
+
     if (!res.ok) {
-        const err = await res.json().catch(() => ({}));
-        throw new Error(err.error || 'Upload failed');
+        const text = await res.text().catch(() => '');
+        throw new Error(`Upload failed (${res.status}): ${text.slice(0, 50)}`);
     }
 
     const data = await res.json();
