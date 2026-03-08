@@ -64,3 +64,25 @@
     background: rgba(255, 255, 255, 0.1);
     color: var(--text-primary);
 }
+
+.toast-loading {
+    border-left: 3px solid var(--text-muted);
+}
+
+.toast-loading svg:first-child {
+    color: var(--text-muted);
+}
+
+.toast-icon-spin {
+    animation: toast-spin 1s linear infinite;
+}
+
+@keyframes toast-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

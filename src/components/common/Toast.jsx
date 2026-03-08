@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, createContext, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiCheck, FiAlertCircle, FiInfo, FiX } from 'react-icons/fi';
+import { FiCheck, FiAlertCircle, FiInfo, FiX, FiLoader } from 'react-icons/fi';
 import './Toast.css';
 
 const ToastContext = createContext(null);
@@ -16,27 +16,40 @@ let toastId = 0;
 export const ToastProvider = ({ children }) => {
     const [toasts, setToasts] = useState([]);
 
-    const addToast = useCallback((message, type = 'info', duration = 3000) => {
-        const id = ++toastId;
-        setToasts(prev => [...prev, { id, message, type }]);
-        setTimeout(() => {
-            setToasts(prev => prev.filter(t => t.id !== id));
-        }, duration);
+    const addToast = useCallback((message, type = 'info', duration = 3000, explicitId = null) => {
+        const id = explicitId || ++toastId;
+        setToasts(prev => {
+            const existingIndex = prev.findIndex(t => t.id === id);
+            if (existingIndex >= 0) {
+                const newToasts = [...prev];
+                newToasts[existingIndex] = { id, message, type };
+                return newToasts;
+            }
+            return [...prev, { id, message, type }];
+        });
+
+        if (duration > 0) {
+            setTimeout(() => {
+                setToasts(prev => prev.filter(t => t.id !== id));
+            }, duration);
+        }
+        return id;
     }, []);
 
     const removeToast = useCallback((id) => {
         setToasts(prev => prev.filter(t => t.id !== id));
     }, []);
 
-    const success = (msg) => addToast(msg, 'success');
-    const error = (msg) => addToast(msg, 'error');
-    const info = (msg) => addToast(msg, 'info');
-    const warning = (msg) => addToast(msg, 'warning');
+    const success = (msg, options) => addToast(msg, 'success', 3000, options?.id);
+    const error = (msg, options) => addToast(msg, 'error', 5000, options?.id);
+    const info = (msg, options) => addToast(msg, 'info', 3000, options?.id);
+    const warning = (msg, options) => addToast(msg, 'warning', 4000, options?.id);
+    const loading = (msg, options) => addToast(msg, 'loading', 0, options?.id);
 
-    const icons = { success: FiCheck, error: FiAlertCircle, info: FiInfo, warning: FiAlertCircle };
+    const icons = { success: FiCheck, error: FiAlertCircle, info: FiInfo, warning: FiAlertCircle, loading: FiLoader };
 
     return (
-        <ToastContext.Provider value={{ addToast, success, error, info, warning }}>
+        <ToastContext.Provider value={{ addToast, success, error, info, warning, loading, removeToast }}>
             {children}
             <div className="toast-container">
                 <AnimatePresence>
@@ -51,11 +64,13 @@ export const ToastProvider = ({ children }) => {
                                 exit={{ opacity: 0, x: 100 }}
                                 transition={{ duration: 0.3 }}
                             >
-                                <Icon size={18} />
+                                <Icon size={18} className={toast.type === 'loading' ? 'toast-icon-spin' : ''} />
                                 <span>{toast.message}</span>
-                                <button onClick={() => removeToast(toast.id)} className="toast-close">
-                                    <FiX size={14} />
-                                </button>
+                                {toast.type !== 'loading' && (
+                                    <button onClick={() => removeToast(toast.id)} className="toast-close">
+                                        <FiX size={14} />
+                                    </button>
+                                )}
                             </motion.div>
                         );
                     })}
