@@ -1,39 +1,79 @@
-import { ref, uploadBytesResumable, getDownloadURL, deleteObject } from 'firebase/storage';
-import { storage } from './firebase';
+// Media upload/delete via MongoDB backend (Serverless API) 
+// using client-side compression to avoid Vercel's 4.5MB payload limit
 
-// Upload media directly to Firebase Storage bypasses Vercel's 4.5MB limit
+const compressImage = async (file, maxWidth = 1920, maxHeight = 1920, quality = 0.8) => {
+    // Only compress images, not videos or gifs where canvas transformation ruins them
+    if (!file.type.startsWith('image/') || file.type === 'image/gif') return file;
+
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (event) => {
+            const img = new Image();
+            img.src = event.target.result;
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                let width = img.width;
+                let height = img.height;
+
+                // Only resize if the image actually exceeds maximum bounds to preserve quality
+                if (width > maxWidth || height > maxHeight) {
+                    const ratio = Math.min(maxWidth / width, maxHeight / height);
+                    width *= ratio;
+                    height *= ratio;
+                }
+
+                canvas.width = width;
+                canvas.height = height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+
+                canvas.toBlob((blob) => {
+                    if (blob) {
+                        resolve(new File([blob], file.name, {
+                            type: file.type || 'image/jpeg',
+                            lastModified: Date.now()
+                        }));
+                    } else {
+                        resolve(file); // Fallback to original if compression fails
+                    }
+                }, file.type || 'image/jpeg', quality);
+            };
+            img.onerror = () => resolve(file); // Fallback to original if image loading fails
+        };
+        reader.onerror = () => resolve(file);
+    });
+};
+
 export const uploadProductMedia = async (file) => {
     if (!file) throw new Error('No file provided');
 
-    // Create a unique filename
-    const ext = file.name.split('.').pop();
-    const uniqueName = `${Date.now()}_${Math.random().toString(36).substring(2, 9)}.${ext}`;
+    let fileToUpload = file;
 
-    // Choose folder based on file type
-    const isVideo = file.type.startsWith('video');
-    const folder = isVideo ? 'products/videos' : 'products/images';
+    // Auto-compress large files (e.g. over 2MB)
+    if (file.size > 2 * 1024 * 1024 && file.type.startsWith('image/')) {
+        fileToUpload = await compressImage(file, 1600, 1600, 0.75);
+    }
 
-    const storageRef = ref(storage, `${folder}/${uniqueName}`);
+    const formData = new FormData();
+    formData.append('file', fileToUpload);
 
-    // Upload file
-    const uploadTask = uploadBytesResumable(storageRef, file);
-
-    return new Promise((resolve, reject) => {
-        uploadTask.on(
-            'state_changed',
-            (snapshot) => {
-                // We can add progress listener here if needed
-            },
-            (error) => {
-                console.error('Firebase Upload Error:', error);
-                reject(new Error('Failed to upload file to Firebase Storage'));
-            },
-            async () => {
-                const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
-                resolve(downloadURL);
-            }
-        );
+    const res = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
     });
+
+    if (res.status === 413) {
+        throw new Error('File too large even after compression. Vercel allows max 4.5MB.');
+    }
+
+    if (!res.ok) {
+        const text = await res.text().catch(() => '');
+        throw new Error(`Upload failed (${res.status}): ${text.slice(0, 50)}`);
+    }
+
+    const data = await res.json();
+    return data.url; // returns "/api/media/<id>"
 };
 
 export const uploadProductImage = async (file) => uploadProductMedia(file);
@@ -42,19 +82,10 @@ export const uploadBannerImage = async (file) => uploadProductMedia(file);
 
 export const deleteImage = async (url) => {
     try {
-        if (!url || !url.includes('firebasestorage.googleapis.com')) return;
-
-        // Extract the file path from the Firebase Storage URL
-        const decodedUrl = decodeURIComponent(url);
-        const startIndex = decodedUrl.indexOf('/o/') + 3;
-        const endIndex = decodedUrl.indexOf('?alt=media');
-
-        if (startIndex > 2 && endIndex > startIndex) {
-            const filePath = decodedUrl.substring(startIndex, endIndex);
-            const fileRef = ref(storage, filePath);
-            await deleteObject(fileRef);
-        }
+        if (!url || !url.startsWith('/api/media')) return;
+        const res = await fetch(url, { method: 'DELETE' });
+        if (!res.ok) console.error('Failed to delete media');
     } catch (e) {
-        console.error('Failed to delete image from Firebase:', e);
+        console.error('Failed to delete image:', e);
     }
 };
