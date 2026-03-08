@@ -91,10 +91,11 @@ const SmartMedia = ({ src, alt = '', className = '', style = {}, videoProps = {}
             <video
                 src={src}
                 className={className}
-                style={{ width: '100%', height: '100%', objectFit: 'cover', pointerEvents: isThumbnail ? 'none' : 'auto', ...style }}
-                muted
-                autoPlay={!isThumbnail}
-                loop
+                style={{ width: '100%', height: '100%', objectFit: 'contain', backgroundColor: '#000', pointerEvents: isThumbnail ? 'none' : 'auto', ...style }}
+                muted={isThumbnail ? true : undefined}
+                autoPlay={isThumbnail ? false : undefined}
+                loop={isThumbnail}
+                controls={!isThumbnail}
                 playsInline
                 onError={() => setFailed(true)}
                 {...videoProps}

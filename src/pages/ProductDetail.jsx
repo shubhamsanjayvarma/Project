@@ -161,7 +161,7 @@ const ProductDetail = () => {
                     <div className="product-images">
                         <div className="product-main-image-container">
                             {product.images?.length > 0 ? (() => {
-                                const isCurrentYouTube = isYouTubeUrl(product.images[selectedImage]);
+                                const isCurrentVideo = isVideoUrl(product.images[selectedImage]) || isYouTubeUrl(product.images[selectedImage]);
                                 return (
                                     <>
                                         <AnimatePresence initial={false} custom={slideDirection}>
@@ -173,11 +173,11 @@ const ProductDetail = () => {
                                                 exit={{ opacity: 0, x: slideDirection > 0 ? -100 : 100 }}
                                                 transition={{ type: "spring", stiffness: 300, damping: 30 }}
                                                 className="product-main-image-slide"
-                                                drag={isCurrentYouTube ? false : "x"}
+                                                drag={isCurrentVideo ? false : "x"}
                                                 dragConstraints={{ left: 0, right: 0 }}
                                                 dragElastic={0.2}
                                                 onDragEnd={(e, { offset }) => {
-                                                    if (isCurrentYouTube) return;
+                                                    if (isCurrentVideo) return;
                                                     const swipe = offset.x;
                                                     if (swipe < -50) {
                                                         handleNextImage();
