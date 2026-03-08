@@ -21,6 +21,17 @@
     min-height: 100vh;
     background: var(--admin-bg);
     color: var(--admin-text);
+    width: 100vw;
+    max-width: 100vw;
+    overflow-x: hidden;
+    /* Strict NO scroll */
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
 }
 
 .admin-loading {
@@ -153,6 +164,9 @@
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
 }
 
 .admin-header {
@@ -1504,13 +1518,16 @@
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
-    gap: 8px !important;
-    font-size: 0.82rem !important;
+    gap: 12px !important;
+    font-size: 16px !important;
+    /* Legible typography */
     color: var(--admin-text) !important;
     text-transform: none !important;
     letter-spacing: 0 !important;
     cursor: pointer;
-    padding: 10px 0;
+    padding: 12px 0;
+    /* Min height requirement */
+    min-height: 44px;
 }
 
 .ap-checkbox-label input[type="checkbox"] {
@@ -1667,7 +1684,9 @@
         justify-content: center;
         gap: 4px;
         flex: 1;
-        padding: 0.4rem;
+        padding: 0.6rem 0.4rem;
+        min-height: 48px;
+        /* Strict touch target */
         color: var(--admin-text-muted);
         text-decoration: none;
         border-radius: 8px;
@@ -1693,6 +1712,11 @@
 
     .admin-content {
         padding: 1rem;
+        width: 100%;
+        max-width: 100vw;
+        overflow-x: hidden;
+        /* Guarantee internal sections drop instead of pushing width */
+        box-sizing: border-box;
     }
 
     .admin-welcome {
@@ -1798,10 +1822,14 @@
         flex-wrap: wrap;
         background: var(--admin-surface);
         border: 1px solid var(--admin-border);
-        border-radius: 14px;
-        margin-bottom: 1rem;
-        padding: 1rem;
+        border-radius: 16px;
+        /* Elegant modern rounding */
+        margin-bottom: 1.25rem;
+        padding: 1.25rem;
+        /* Spacious touch padding */
         position: relative;
+        gap: 0.5rem;
+        /* Ensure inner elements don't crash */
     }
 
     .admin-table td {
@@ -1810,6 +1838,7 @@
         display: flex;
         align-items: center;
         white-space: normal;
+        min-height: 24px;
     }
 
     /* Card Grid Alignment */
@@ -1842,14 +1871,22 @@
     }
 
     .ap-td-actions {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
+        width: 100%;
+        margin-top: 0.75rem;
+        position: relative;
+        top: 0;
+        right: 0;
     }
 
     .admin-table-actions {
         flex-direction: column;
-        gap: 0.25rem;
+        gap: 0.5rem;
+        width: 100%;
+    }
+
+    .admin-table-actions .btn {
+        width: 100%;
+        justify-content: center;
     }
 
     .ap-td-price {
@@ -1916,10 +1953,11 @@
         flex-wrap: wrap;
         background: var(--admin-surface);
         border: 1px solid var(--admin-border);
-        border-radius: 14px;
-        margin-bottom: 1rem;
-        padding: 1rem;
+        border-radius: 16px;
+        margin-bottom: 1.25rem;
+        padding: 1.25rem;
         position: relative;
+        gap: 0.5rem;
     }
 
     .ap-td-id,
@@ -2008,10 +2046,11 @@
         flex-wrap: wrap;
         background: var(--admin-surface);
         border: 1px solid var(--admin-border);
-        border-radius: 14px;
-        margin-bottom: 1rem;
-        padding: 1rem;
+        border-radius: 16px;
+        margin-bottom: 1.25rem;
+        padding: 1.25rem;
         position: relative;
+        gap: 0.5rem;
     }
 
     .ap-td-user {
@@ -2118,22 +2157,34 @@
         padding-bottom: 10px;
     }
 
-    /* Grids → single column */
-    .ap-row {
-        grid-template-columns: 1fr;
-        gap: 10px;
-    }
-
+    /* Grids → strictly single column on small screens */
+    .ap-row,
+    .ap-row-2,
     .ap-row-3 {
         grid-template-columns: 1fr;
+        gap: 12px;
     }
 
-    /* Inputs */
+    /* Inputs - Strict 44px minimum touch target & 16px text */
     .ap-field input,
     .ap-field textarea,
     .ap-field select {
-        padding: 10px 12px;
-        font-size: 0.82rem;
+        padding: 12px 14px;
+        font-size: 16px !important;
+        /* Prevent iOS zoom */
+        min-height: 44px;
+    }
+
+    /* Buttons minimum height */
+    .btn,
+    .admin-icon-btn,
+    .admin-menu-toggle {
+        min-height: 44px;
+        font-size: 16px;
+    }
+
+    label {
+        font-size: 16px !important;
     }
 
     /* Chips (sizes, materials) */
@@ -2216,8 +2267,11 @@
         padding: 1rem;
     }
 
-    .form-row {
+    .form-row,
+    .form-row-2,
+    .form-row-3 {
         grid-template-columns: 1fr;
+        gap: 12px;
     }
 
     /* Order detail modal */
@@ -2286,14 +2340,15 @@
     }
 
     .ap-field label {
-        font-size: 0.68rem;
+        font-size: 16px !important;
     }
 
     .ap-field input,
     .ap-field textarea,
     .ap-field select {
-        padding: 9px 10px;
-        font-size: 0.8rem;
+        padding: 12px 14px;
+        font-size: 16px !important;
+        min-height: 44px;
     }
 
     /* Chips even smaller */
