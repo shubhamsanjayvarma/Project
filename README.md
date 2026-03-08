@@ -1,5 +1,3 @@
-Second Thrift E- Commerce Website For Client's (Paid Work)
-
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
