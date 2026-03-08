@@ -4,10 +4,13 @@
 
 // Format price in EUR
 export const formatPrice = (price) => {
-    return new Intl.NumberFormat('de-DE', {
-        style: 'currency',
-        currency: 'EUR',
+    if (price === undefined || price === null) return '';
+    const formattedNumber = new Intl.NumberFormat('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+        useGrouping: false
     }).format(price);
+    return `${formattedNumber} €`;
 };
 
 // Format date
