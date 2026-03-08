@@ -111,7 +111,7 @@ const AdminProducts = () => {
     };
 
     const handleDelete = async (id) => {
-        // Automatically delete without blocking 'window.confirm' which fails on mobile/embedded browsers
+        if (!window.confirm('Are you sure you want to permanently delete this product?')) return;
         try {
             toast.loading('Deleting...', { id: 'delete-toast' });
             await deleteProduct(id);

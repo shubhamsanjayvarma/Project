@@ -8,6 +8,7 @@ import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import CartSidebar from './components/cart/CartSidebar';
 import FloatingContact from './components/common/FloatingContact';
+import ScrollToTop from './components/common/ScrollToTop';
 import './styles/index.css';
 
 // Lazy-load pages for performance
@@ -72,6 +73,7 @@ const CustomerLayout = ({ children }) => (
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <AuthProvider>
         <CartProvider>
           <WishlistProvider>

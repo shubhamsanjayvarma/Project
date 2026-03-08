@@ -279,6 +279,11 @@
 
     .shop-layout {
         gap: 1rem;
+        flex-direction: column;
+    }
+
+    .shop-products .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
@@ -307,5 +312,9 @@
     .view-toggle button {
         width: 32px;
         height: 32px;
+    }
+
+    .shop-products .grid-3 {
+        grid-template-columns: 1fr;
     }
 }

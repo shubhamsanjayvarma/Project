@@ -71,7 +71,8 @@
 
 @media (max-width: 640px) {
     .floating-contact {
-        bottom: 20px;
+        bottom: 80px;
+        /* Moved up to clear product buttons */
         right: 16px;
     }
 
