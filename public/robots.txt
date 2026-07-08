@@ -1,0 +1,15 @@
+# Second Thrift — robots.txt
+# https://www.secondthriftt.com
+
+User-agent: *
+Allow: /
+
+# Disallow admin, auth, and user-specific pages
+Disallow: /admin
+Disallow: /admin/
+Disallow: /profile
+Disallow: /checkout
+Disallow: /verify-email
+
+# Sitemap
+Sitemap: https://www.secondthriftt.com/sitemap.xml
