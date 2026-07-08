@@ -27,3 +27,6 @@ dist-ssr
 # Separate project repos
 Second Thrift/
 .vercel
+
+.vercel
+.env*
