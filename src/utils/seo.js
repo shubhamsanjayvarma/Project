@@ -18,7 +18,16 @@ export const useSEO = ({
     noindex = false,
 } = {}) => {
     useEffect(() => {
-        const fullTitle = title ? `${title} | ${SITE_NAME}` : `${SITE_NAME} — Premium Thrift Fashion`;
+        let fullTitle = '';
+        if (title) {
+            if (title.includes(SITE_NAME) || title.includes('SecondThriftt')) {
+                fullTitle = title;
+            } else {
+                fullTitle = `${title} | ${SITE_NAME}`;
+            }
+        } else {
+            fullTitle = `${SITE_NAME} (SecondThriftt) — Premium Vintage & Designer Streetwear`;
+        }
         const canonicalUrl = `${SITE_URL}${path}`;
 
         // Title

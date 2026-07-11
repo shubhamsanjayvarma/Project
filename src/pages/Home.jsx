@@ -50,8 +50,8 @@ const Home = () => {
     const { success, error } = useToast();
 
     useSEO({
-        title: 'Premium Thrift Fashion | Vintage & Designer Clothing Europe',
-        description: 'Second Thrift — Premium vintage & designer thrift clothing curated in India for European style lovers. Discover unique vintage, designer, and bulk deals with shipping to Europe.',
+        title: 'Second Thrift (SecondThriftt) — Premium Vintage & Designer Streetwear Europe',
+        description: 'Second Thrift (SecondThriftt) — Premium vintage & designer thrift clothing curated in India and shipped to Europe. Discover curated vintage, designer streetwear, and wholesale bulk bundles.',
         path: '/',
     });
 
