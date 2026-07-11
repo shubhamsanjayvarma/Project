@@ -89,15 +89,15 @@ export const isVideoUrl = (url) => {
 // Check if URL is a YouTube link
 export const isYouTubeUrl = (url) => {
     if (!url) return false;
-    return /youtube\.com|youtu\.be/.test(url);
+    return /youtube\.com|youtu\.be/i.test(url);
 };
 
 // Extract YouTube video ID
 export const getYouTubeId = (url) => {
     if (!url) return null;
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|shorts\/)([^#&?]*).*/;
+    const regExp = /^.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=|shorts\/|live\/)([^#&?]{11})/i;
     const match = url.match(regExp);
-    return (match && match[2].length === 11) ? match[2] : null;
+    return match ? match[1] : null;
 };
 
 // Order status labels with colors
