@@ -24,6 +24,7 @@ const AdminProducts = () => {
     const [editProduct, setEditProduct] = useState(null);
     const [form, setForm] = useState({ ...EMPTY_FORM });
     const [mediaItems, setMediaItems] = useState([]);
+    const [draggedIndex, setDraggedIndex] = useState(null);
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
@@ -58,6 +59,7 @@ const AdminProducts = () => {
             }
         });
         setMediaItems([]);
+        setDraggedIndex(null);
         setShowForm(false);
     };
 
@@ -188,16 +190,29 @@ const AdminProducts = () => {
         });
     };
 
-    const moveItem = (index, direction) => {
+    const handleDragStart = (e, index) => {
+        if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
+            e.preventDefault();
+            return;
+        }
+        setDraggedIndex(index);
+        e.dataTransfer.effectAllowed = 'move';
+    };
+
+    const handleDragOver = (e, index) => {
+        e.preventDefault();
+        if (draggedIndex === null || draggedIndex === index) return;
         setMediaItems(prev => {
             const next = [...prev];
-            const targetIndex = index + direction;
-            if (targetIndex < 0 || targetIndex >= next.length) return prev;
-            const temp = next[index];
-            next[index] = next[targetIndex];
-            next[targetIndex] = temp;
+            const [draggedItem] = next.splice(draggedIndex, 1);
+            next.splice(index, 0, draggedItem);
             return next;
         });
+        setDraggedIndex(index);
+    };
+
+    const handleDragEnd = () => {
+        setDraggedIndex(null);
     };
 
     const addYoutubeLink = () => {
@@ -501,7 +516,21 @@ const AdminProducts = () => {
                                             {mediaItems.map((item, i) => {
                                                 const isCover = i === 0;
                                                 return (
-                                                    <div key={item.id} className={`ap-media-item ${item.type === 'file' ? 'ap-media-new' : ''}`} style={{ position: 'relative' }}>
+                                                    <motion.div
+                                                        key={item.id}
+                                                        layout
+                                                        className={`ap-media-item ${item.type === 'file' ? 'ap-media-new' : ''}`}
+                                                        style={{
+                                                            position: 'relative',
+                                                            cursor: draggedIndex === i ? 'grabbing' : 'grab',
+                                                            opacity: draggedIndex === i ? 0.4 : 1,
+                                                            transition: draggedIndex === i ? 'none' : 'opacity 0.2s, transform 0.2s',
+                                                        }}
+                                                        draggable
+                                                        onDragStart={(e) => handleDragStart(e, i)}
+                                                        onDragOver={(e) => handleDragOver(e, i)}
+                                                        onDragEnd={handleDragEnd}
+                                                    >
                                                         {item.type === 'url' ? (
                                                             <>
                                                                 <SmartMedia src={item.value} alt="" className="ap-media-preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} videoProps={{ autoPlay: false }} isThumbnail={true} />
@@ -519,23 +548,17 @@ const AdminProducts = () => {
                                                             )
                                                         )}
 
-                                                        {/* Reorder and Cover Controls */}
-                                                        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(0,0,0,0.7)', padding: '4px 6px', zIndex: 10 }}>
-                                                            {i > 0 ? (
-                                                                <button type="button" onClick={() => moveItem(i, -1)} style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', padding: '2px 4px', fontSize: '11px', lineHeight: 1 }} title="Move Left">◀</button>
-                                                            ) : <div />}
-                                                            {!isCover && (
-                                                                <button type="button" onClick={() => setAsCover(i)} style={{ background: 'rgba(255,255,255,0.2)', border: 'none', color: 'white', cursor: 'pointer', padding: '2px 6px', borderRadius: '3px', fontSize: '9px', textTransform: 'uppercase', fontWeight: 'bold', lineHeight: 1 }} title="Set as Cover">Cover</button>
-                                                            )}
-                                                            {i < mediaItems.length - 1 ? (
-                                                                <button type="button" onClick={() => moveItem(i, 1)} style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', padding: '2px 4px', fontSize: '11px', lineHeight: 1 }} title="Move Right">▶</button>
-                                                            ) : <div />}
-                                                        </div>
+                                                        {/* Cover Selection Overlay */}
+                                                        {!isCover && (
+                                                            <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, display: 'flex', justifyContent: 'center', alignItems: 'center', background: 'rgba(0,0,0,0.5)', padding: '6px', zIndex: 10 }}>
+                                                                <button type="button" onClick={() => setAsCover(i)} style={{ background: 'rgba(255,255,255,0.25)', border: 'none', color: 'white', cursor: 'pointer', padding: '3px 10px', borderRadius: '4px', fontSize: '9px', textTransform: 'uppercase', fontWeight: 'bold', lineHeight: 1 }} title="Set as Cover">Set Cover</button>
+                                                            </div>
+                                                        )}
 
                                                         <button type="button" className="ap-media-remove" onClick={() => removeMediaItem(item.id)}><FiX size={12} /></button>
                                                         {isCover && <span className="ap-media-badge" style={{ position: 'absolute', top: '4px', left: '4px', bottom: 'auto' }}>Cover</span>}
                                                         {item.type === 'file' && <span className="ap-media-badge new" style={{ position: 'absolute', top: '4px', left: isCover ? '55px' : '4px', bottom: 'auto' }}>New</span>}
-                                                    </div>
+                                                    </motion.div>
                                                 );
                                             })}
                                         </div>
