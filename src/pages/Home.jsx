@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { FiArrowRight, FiTruck, FiShield, FiRefreshCw, FiPackage, FiChevronDown, FiStar, FiInstagram } from 'react-icons/fi';
 import ProductCard from '../components/product/ProductCard';
 import { defaultCategories } from '../services/categories';
-import { subscribeToFeaturedProducts } from '../services/products';
 
 // Hero & banner images — picked for BRIGHT contrast with text overlays
 const heroImg = '/hero-bg.jpeg';
@@ -36,8 +35,6 @@ import insta6 from '../assets/evisu-warehouse.jpeg';
 import bannerImg from '../assets/evisu-full-collection.jpeg';
 
 import { useToast } from '../components/common/Toast';
-import { db } from '../services/firebase';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useSEO, JsonLd, organizationSchema, websiteSchema, faqSchema } from '../utils/seo';
 import './Home.css';
 
@@ -58,11 +55,23 @@ const Home = () => {
 
     useEffect(() => {
         setLoading(true);
-        const unsubscribe = subscribeToFeaturedProducts(8, (data) => {
-            setProducts(data);
-            setLoading(false);
-        });
-        return () => unsubscribe();
+        let unsubscribe;
+
+        import('../services/products')
+            .then(({ subscribeToFeaturedProducts }) => {
+                unsubscribe = subscribeToFeaturedProducts(8, (data) => {
+                    setProducts(data);
+                    setLoading(false);
+                });
+            })
+            .catch((err) => {
+                console.error('Failed to load products dynamically:', err);
+                setLoading(false);
+            });
+
+        return () => {
+            if (unsubscribe) unsubscribe();
+        };
     }, []);
 
     const handleSubscribe = async (e) => {
@@ -70,6 +79,8 @@ const Home = () => {
         if (!email.trim() || isSubscribing) return;
         setIsSubscribing(true);
         try {
+            const { db } = await import('../services/firebase');
+            const { collection, addDoc, serverTimestamp } = await import('firebase/firestore');
             await addDoc(collection(db, 'subscribers'), {
                 email: email.trim(),
                 createdAt: serverTimestamp(),
