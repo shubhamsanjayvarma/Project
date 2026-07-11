@@ -14,14 +14,14 @@ import collectionImg from '../assets/armani-dg-collection.jpeg';
 import aboutImg from '../assets/second-thrift-boxed.jpeg';
 
 // Category images — picked for variety and brightness
-import catTopsImg from '../assets/sweaters-pile.jpeg';
-import catBottomsImg from '../assets/true-religion-collection.jpeg';
+import catJeansImg from '../assets/true-religion-collection.jpeg';
+import catLevisImg from '../assets/japanese-denim.jpeg';
+import catTrueReligionImg from '../assets/true-religion-collection.jpeg';
+import catJapaneseImg from '../assets/japanese-art-jeans.jpeg';
+import catShortsImg from '../assets/street-denim-mix.jpeg';
+import catHipHopImg from '../assets/evisu-warehouse.jpeg';
 import catOuterwearImg from '../assets/bulk-inventory.jpeg';
-import catDressesImg from '../assets/japanese-denim.jpeg';
-import catActivewearImg from '../assets/gstar-display.jpeg';
-import catAccessoriesImg from '../assets/armani-dg-collection.jpeg';
-import catFootwearImg from '../assets/mixed-brands.jpeg';
-import catVintageImg from '../assets/japanese-art-jeans.jpeg';
+import catVintageImg from '../assets/japanese-art-jeans-2.jpeg';
 
 // Instagram grid images — diverse product shots
 import insta1 from '../assets/second-thrift-box-product.jpeg';
@@ -111,20 +111,20 @@ const Home = () => {
     ];
 
     const categoryBanners = [
-        { slug: 'tops', label: 'LATEST DROP', sublabel: 'NEW ARRIVALS', img: latestDropImg, width: 960, height: 1280 },
-        { slug: 'bottoms', label: 'PREMIUM DENIM', sublabel: 'DESIGNER JEANS', img: premiumDenimImg, width: 1040, height: 1040 },
+        { slug: 'jeans', label: 'LATEST DROP', sublabel: 'NEW ARRIVALS', img: latestDropImg, width: 960, height: 1280 },
+        { slug: 'levis', label: "LEVI'S DENIM", sublabel: "AUTHENTIC LEVI'S", img: premiumDenimImg, width: 1040, height: 1040 },
         { slug: 'outerwear', label: 'EVERYDAY LAYERS', sublabel: 'OUTERWEAR', img: outerwearImg, width: 960, height: 1280 },
-        { slug: 'dresses', label: 'COLLECTION', sublabel: 'FULL COLLECTION', img: collectionImg, width: 1040, height: 1040 },
+        { slug: 'japanese', label: 'JAPANESE DENIM', sublabel: 'SELVEDGE & ART', img: collectionImg, width: 1040, height: 1040 },
     ];
 
     const categoryImages = [
-        { slug: 'tops', name: 'TOPS', img: catTopsImg, width: 780, height: 1040 },
-        { slug: 'bottoms', name: 'BOTTOMS', img: catBottomsImg, width: 1040, height: 1040 },
+        { slug: 'jeans', name: 'JEANS', img: catJeansImg, width: 1040, height: 1040 },
+        { slug: 'levis', name: "LEVI'S", img: catLevisImg, width: 780, height: 1040 },
+        { slug: 'true-religion', name: 'TRUE RELIGION', img: catTrueReligionImg, width: 1040, height: 1040 },
+        { slug: 'japanese', name: 'JAPANESE', img: catJapaneseImg, width: 780, height: 1040 },
+        { slug: 'shorts', name: 'SHORTS', img: catShortsImg, width: 960, height: 1280 },
+        { slug: 'hip-hop', name: 'HIP HOP', img: catHipHopImg, width: 960, height: 1280 },
         { slug: 'outerwear', name: 'OUTERWEAR', img: catOuterwearImg, width: 960, height: 1280 },
-        { slug: 'dresses', name: 'DRESSES', img: catDressesImg, width: 780, height: 1040 },
-        { slug: 'activewear', name: 'ACTIVEWEAR', img: catActivewearImg, width: 960, height: 1280 },
-        { slug: 'accessories', name: 'ACCESSORIES', img: catAccessoriesImg, width: 1040, height: 1040 },
-        { slug: 'footwear', name: 'FOOTWEAR', img: catFootwearImg, width: 780, height: 1040 },
         { slug: 'vintage', name: 'VINTAGE', img: catVintageImg, width: 780, height: 1040 },
     ];
 

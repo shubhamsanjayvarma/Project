@@ -31,14 +31,15 @@ export const deleteCategory = async (id) => {
 
 // Default categories for initial setup
 export const defaultCategories = [
-    { name: 'Tops', slug: 'tops', description: 'T-Shirts, Shirts, Blouses, Sweaters, Hoodies', order: 1, icon: '👕' },
-    { name: 'Bottoms', slug: 'bottoms', description: 'Jeans, Trousers, Shorts, Skirts', order: 2, icon: '👖' },
-    { name: 'Outerwear', slug: 'outerwear', description: 'Jackets, Coats, Blazers, Vests', order: 3, icon: '🧥' },
-    { name: 'Dresses', slug: 'dresses', description: 'Casual, Formal, Maxi, Mini', order: 4, icon: '👗' },
-    { name: 'Activewear', slug: 'activewear', description: 'Sportswear, Tracksuits, Yoga', order: 5, icon: '🏃' },
-    { name: 'Accessories', slug: 'accessories', description: 'Bags, Belts, Scarves, Hats', order: 6, icon: '👜' },
-    { name: 'Footwear', slug: 'footwear', description: 'Sneakers, Boots, Sandals, Formal', order: 7, icon: '👟' },
+    { name: 'Jeans', slug: 'jeans', description: 'Vintage & Designer Denim Jeans', order: 1, icon: '👖' },
+    { name: "Levi's", slug: 'levis', description: "Authentic Levi's Vintage Denim", order: 2, icon: '🏷️' },
+    { name: 'True Religion', slug: 'true-religion', description: 'True Religion Designer Denim', order: 3, icon: '✨' },
+    { name: 'Japanese', slug: 'japanese', description: 'Japanese Selvedge & Art Denim', order: 4, icon: '🇯🇵' },
+    { name: 'Shorts', slug: 'shorts', description: 'Vintage & Streetwear Shorts', order: 5, icon: '🩳' },
+    { name: 'Hip Hop', slug: 'hip-hop', description: '90s & 2000s Hip Hop Streetwear', order: 6, icon: '🎤' },
+    { name: 'Outerwear', slug: 'outerwear', description: 'Jackets, Coats, Blazers, Vests', order: 7, icon: '🧥' },
     { name: 'Vintage', slug: 'vintage', description: '70s, 80s, 90s, 2000s', order: 8, icon: '🎭' },
-    { name: 'Designer', slug: 'designer', description: 'Premium & Luxury Brands', order: 9, icon: '✨' },
+    { name: 'Designer', slug: 'designer', description: 'Premium & Luxury Brands', order: 9, icon: '💎' },
     { name: 'Bulk Deals', slug: 'bulk-deals', description: 'Mixed Bundles & Wholesale Lots', order: 10, icon: '📦' },
 ];
+
