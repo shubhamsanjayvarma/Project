@@ -41,10 +41,11 @@ export const subscribeToAllOrders = (callback) => {
 export const subscribeToOrderStats = (callback) => {
     return onSnapshot(ordersRef, (snapshot) => {
         const orders = snapshot.docs.map(doc => doc.data());
-        const totalOrders = orders.length;
-        const totalRevenue = orders.reduce((sum, o) => sum + (o.total || 0), 0);
-        const pendingOrders = orders.filter(o => o.status === 'pending').length;
-        const completedOrders = orders.filter(o => o.status === 'delivered').length;
+        const paidOrders = orders.filter(o => o.paymentStatus === 'paid');
+        const totalOrders = paidOrders.length;
+        const totalRevenue = paidOrders.reduce((sum, o) => sum + (o.total || 0), 0);
+        const pendingOrders = paidOrders.filter(o => o.status === 'pending').length;
+        const completedOrders = paidOrders.filter(o => o.status === 'delivered').length;
         callback({ totalOrders, totalRevenue, pendingOrders, completedOrders });
     });
 };
@@ -78,11 +79,12 @@ export const deleteOrder = async (id) => {
 export const getOrderStats = async () => {
     const snapshot = await getDocs(ordersRef);
     const orders = snapshot.docs.map(doc => doc.data());
+    const paidOrders = orders.filter(o => o.paymentStatus === 'paid');
 
-    const totalOrders = orders.length;
-    const totalRevenue = orders.reduce((sum, o) => sum + (o.total || 0), 0);
-    const pendingOrders = orders.filter(o => o.status === 'pending').length;
-    const completedOrders = orders.filter(o => o.status === 'delivered').length;
+    const totalOrders = paidOrders.length;
+    const totalRevenue = paidOrders.reduce((sum, o) => sum + (o.total || 0), 0);
+    const pendingOrders = paidOrders.filter(o => o.status === 'pending').length;
+    const completedOrders = paidOrders.filter(o => o.status === 'delivered').length;
 
     return { totalOrders, totalRevenue, pendingOrders, completedOrders };
 };
