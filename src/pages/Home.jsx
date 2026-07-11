@@ -96,7 +96,7 @@ const Home = () => {
         { name: 'Lucas B. (Paris, France)', text: 'Absolutely obsessed with my vintage pieces! I was hesitant about sizing for online thrift, but their descriptions were spot-on. The packaging felt premium and shipping was incredibly fast. Already building my next cart!', rating: 5 },
         { name: 'Emilia K. (Berlin, Germany)', text: 'Hands down the best online vintage store in Europe. The quality-to-price ratio is unbeatable, especially the bulk bundle deals! Got a full streetwear rotation update for less than €150. Everything arrived clean and smelling fresh.', rating: 5 },
         { name: 'Sven de V. (Amsterdam, Netherlands)', text: 'The vintage denim selection is next level. Found a pair of archived 90s jeans in mint condition that I\'ve been hunting for years. Customer support was super helpful, and having shipping and VAT included makes checkout so smooth!', rating: 5 },
-        { name: 'Giulia M. (Milan, Italy)', text: 'Incredible experience! The items look even better in person than in the photos. The curated streetwear drop was fire, and they even sent a lovely personalized note with my package. Highly recommend Second Thrift!', rating: 5 },
+        { name: 'John Larson (United States)', text: 'Incredible experience! The items look even better in person than in the photos. The curated streetwear drop was fire, and they even sent a lovely personalized note with my package. Highly recommend Second Thrift!', rating: 5 },
     ];
 
     const categoryBanners = [
