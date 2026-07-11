@@ -79,7 +79,7 @@ const sections = {
             },
             {
                 heading: 'How do I contact you?',
-                text: 'You can reach us via WhatsApp at +91 9909527515, Instagram @second._.thriftt, or email at secondthriftt.1@gmail.com.'
+                text: 'You can reach us via WhatsApp at +91 9909527515, Instagram @second._.thriftt, or email at secondthriftt39@gmail.com.'
             },
             {
                 heading: 'Do you ship internationally?',
@@ -147,11 +147,11 @@ const sections = {
             },
             {
                 heading: 'Your Rights',
-                text: 'You have the right to access, correct, or delete your personal data. Contact us at secondthriftt.1@gmail.com to exercise these rights.'
+                text: 'You have the right to access, correct, or delete your personal data. Contact us at secondthriftt39@gmail.com to exercise these rights.'
             },
             {
                 heading: 'Contact',
-                text: 'For privacy-related questions, contact us at secondthriftt.1@gmail.com.'
+                text: 'For privacy-related questions, contact us at secondthriftt39@gmail.com.'
             },
         ]
     },
@@ -259,7 +259,7 @@ const InfoPage = ({ type }) => {
                         <a href="https://wa.me/919909527515" target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
                             <FaWhatsapp size={16} /> WhatsApp
                         </a>
-                        <a href="mailto:secondthriftt.1@gmail.com" className="btn btn-outline" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+                        <a href="mailto:secondthriftt39@gmail.com" className="btn btn-outline" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
                             <FiMail size={16} /> Email Us
                         </a>
                     </div>

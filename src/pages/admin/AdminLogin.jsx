@@ -18,7 +18,7 @@ const AdminLogin = () => {
     const toast = useToast();
     const navigate = useNavigate();
 
-    const adminEmail = import.meta.env.VITE_ADMIN_EMAIL || 'secondthriftt.1@gmail.com';
+    const adminEmail = import.meta.env.VITE_ADMIN_EMAIL || 'secondthriftt39@gmail.com';
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -56,7 +56,7 @@ const AdminLogin = () => {
         e.preventDefault();
         if (!resetEmail) { toast.error('Please enter your admin email'); return; }
 
-        const adminEmail = import.meta.env.VITE_ADMIN_EMAIL || 'secondthriftt.1@gmail.com';
+        const adminEmail = import.meta.env.VITE_ADMIN_EMAIL || 'secondthriftt39@gmail.com';
         if (resetEmail !== adminEmail) {
             toast.error('This email is not an admin account');
             return;

@@ -51,7 +51,7 @@ export const getDefaultSettings = () => ({
     ownerWhatsApp: import.meta.env.VITE_OWNER_WHATSAPP || '+491234567890',
     wiseEmail: 'pay@secondthrift.com',
     aboutText: 'Second Thrift is an Indian-based thrift clothing curator shipping premium pre-loved vintage and designer streetwear to Europe. We believe in sustainable fashion and giving clothes a second life.',
-    contactEmail: 'secondthriftt.1@gmail.com',
+    contactEmail: 'secondthriftt39@gmail.com',
     socialLinks: {
         instagram: 'https://www.instagram.com/second._.thriftt?igsh=MTU5MXd0ZDV3bDVsbA==',
         facebook: 'https://facebook.com/secondthrift',

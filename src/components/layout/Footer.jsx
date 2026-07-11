@@ -44,7 +44,7 @@ const Footer = () => {
                         <h4>Contact</h4>
                         <div className="footer-contact-item">
                             <FiMail size={16} />
-                            <a href="mailto:secondthriftt.1@gmail.com">secondthriftt.1@gmail.com</a>
+                            <a href="mailto:secondthriftt39@gmail.com">secondthriftt39@gmail.com</a>
                         </div>
                         <div className="footer-contact-item">
                             <FaWhatsapp size={16} />

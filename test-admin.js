@@ -30,7 +30,7 @@ const products = [
     await page.goto('https://secondthrift.vercel.app/admin/login');
 
     await page.waitForSelector('input[type="email"]');
-    await page.fill('input[type="email"]', 'secondthriftt.1@gmail.com');
+    await page.fill('input[type="email"]', 'secondthriftt39@gmail.com');
     await page.fill('input[type="password"]', 'Second@Thrift9909');
     await page.click('button:has-text("Sign In")');
 

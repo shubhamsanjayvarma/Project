@@ -103,7 +103,7 @@ export const signInAdmin = async (email, password) => {
         return userCredential.user;
     } catch (error) {
         if (error.code === 'auth/user-not-found' || error.code === 'auth/invalid-credential') {
-            const adminEmail = import.meta.env.VITE_ADMIN_EMAIL || 'secondthriftt.1@gmail.com';
+            const adminEmail = import.meta.env.VITE_ADMIN_EMAIL || 'secondthriftt39@gmail.com';
             if (email.trim() === adminEmail.trim()) {
                 try {
                     // Auto-provision admin account if it doesn't exist
@@ -134,6 +134,6 @@ export const signInAdmin = async (email, password) => {
  * Check if user is admin (by email match)
  */
 export const isAdminUser = (user) => {
-    const adminEmail = import.meta.env.VITE_ADMIN_EMAIL || 'secondthriftt.1@gmail.com';
+    const adminEmail = import.meta.env.VITE_ADMIN_EMAIL || 'secondthriftt39@gmail.com';
     return user?.email === adminEmail;
 };

@@ -28,7 +28,7 @@ const Contact = () => {
     };
 
     const contactItems = [
-        { icon: <FiMail size={22} />, title: 'Email', value: 'secondthriftt.1@gmail.com', href: 'mailto:secondthriftt.1@gmail.com', isLink: true },
+        { icon: <FiMail size={22} />, title: 'Email', value: 'secondthriftt39@gmail.com', href: 'mailto:secondthriftt39@gmail.com', isLink: true },
         { icon: <FaWhatsapp size={22} />, title: 'WhatsApp', value: '+91 9909527515', href: 'https://wa.me/919909527515', isLink: true, external: true },
         { icon: <FaInstagram size={22} />, title: 'Instagram', value: '@second._.thriftt', href: 'https://www.instagram.com/second._.thriftt?igsh=MTU5MXd0ZDV3bDVsbA==', isLink: true, external: true },
         { icon: <FiMapPin size={22} />, title: 'Location', value: 'Curated in India — Shipping to Europe', isLink: false },

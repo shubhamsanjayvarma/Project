@@ -37,7 +37,7 @@ service cloud.firestore {
     // User-scoped data — logged in users can create/update their own profile
     match /users/{uid} {
       allow create: if request.auth != null && request.auth.uid == uid;
-      allow read: if request.auth != null && (request.auth.uid == uid || request.auth.token.email == 'secondthriftt.1@gmail.com');
+      allow read: if request.auth != null && (request.auth.uid == uid || request.auth.token.email == 'secondthriftt39@gmail.com');
       allow update, write: if request.auth != null && request.auth.uid == uid;
 
       // Wishlist

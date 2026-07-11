@@ -110,7 +110,7 @@ export const organizationSchema = () => ({
     logo: DEFAULT_IMAGE,
     image: DEFAULT_IMAGE,
     description: DEFAULT_DESCRIPTION,
-    email: 'secondthriftt.1@gmail.com',
+    email: 'secondthriftt39@gmail.com',
     telephone: '+919909527515',
     sameAs: [
         'https://www.instagram.com/second._.thriftt',
@@ -122,7 +122,7 @@ export const organizationSchema = () => ({
         '@type': 'ContactPoint',
         telephone: '+919909527515',
         contactType: 'customer service',
-        email: 'secondthriftt.1@gmail.com',
+        email: 'secondthriftt39@gmail.com',
         availableLanguage: ['English', 'Hindi', 'German'],
     },
     foundingDate: '2024',
