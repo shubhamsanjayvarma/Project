@@ -27,7 +27,7 @@ export const subscribeToSettings = (callback) => {
 export const getDefaultSettings = () => ({
     siteName: 'Second Thrift',
     heroTitle: 'Premium Thrift Fashion',
-    heroSubtitle: 'Discover unique pre-loved clothing from Europe. Bulk deals, vintage finds, and designer pieces at unbeatable prices.',
+    heroSubtitle: 'Discover unique pre-loved clothing curated in India for Europe. Bulk deals, vintage finds, and designer pieces at unbeatable prices.',
     heroCTA: 'Shop Now',
     bannerText: 'Free shipping on orders over €100! Use code: THRIFT100',
     bannerActive: true,
@@ -50,7 +50,7 @@ export const getDefaultSettings = () => ({
     taxRate: 19,
     ownerWhatsApp: import.meta.env.VITE_OWNER_WHATSAPP || '+491234567890',
     wiseEmail: 'pay@secondthrift.com',
-    aboutText: 'Second Thrift is a European-based thrift clothing store offering premium pre-loved fashion at wholesale prices. We believe in sustainable fashion and giving clothes a second life.',
+    aboutText: 'Second Thrift is an Indian-based thrift clothing curator shipping premium pre-loved vintage and designer streetwear to Europe. We believe in sustainable fashion and giving clothes a second life.',
     contactEmail: 'secondthriftt.1@gmail.com',
     socialLinks: {
         instagram: 'https://www.instagram.com/second._.thriftt?igsh=MTU5MXd0ZDV3bDVsbA==',

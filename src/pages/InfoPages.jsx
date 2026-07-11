@@ -11,7 +11,7 @@ const sections = {
         content: [
             {
                 heading: 'Where do you ship?',
-                text: 'We ship across Europe and internationally. We are based in Europe and specialise in European thrift fashion.'
+                text: 'We ship across Europe and internationally. We are based in India and specialize in curating premium vintage and designer thrift fashion for European style lovers.'
             },
             {
                 heading: 'Shipping costs',
@@ -19,7 +19,7 @@ const sections = {
             },
             {
                 heading: 'Delivery times',
-                text: 'Standard delivery takes 5–10 business days depending on your location. European orders are typically faster (3–7 days). International orders may take up to 14 days.'
+                text: 'Standard international shipping from our curation hub in India to Europe takes 5–10 business days depending on your location. All shipping and customs clearance are handled by us, with tracking provided.'
             },
             {
                 heading: 'Tracking',
@@ -63,7 +63,7 @@ const sections = {
         content: [
             {
                 heading: 'What is Second Thrift?',
-                text: 'Second Thrift is a premium thrift fashion store offering curated pre-loved clothing from Europe. We specialise in quality vintage, streetwear, and designer pieces at affordable prices.'
+                text: 'Second Thrift is a premium thrift fashion store. We curate and inspect high-quality vintage, streetwear, and designer garments in India and ship them directly to fashion lovers across Europe at wholesale prices.'
             },
             {
                 heading: 'Are the clothes used?',

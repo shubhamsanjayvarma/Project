@@ -432,9 +432,8 @@ const ProductDetail = () => {
                             </div>
                         )}
 
-                        {/* Trust badges */}
                         <div className="product-trust">
-                            <div><FiTruck /> European shipping available</div>
+                            <div><FiTruck /> Shipping from India to Europe available</div>
                             <div><FiShield /> Quality checked before shipping</div>
                             <div><FiRefreshCw /> Easy returns within 14 days</div>
                         </div>

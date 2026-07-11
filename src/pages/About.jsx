@@ -16,7 +16,7 @@ import { useSEO, JsonLd, breadcrumbSchema } from '../utils/seo';
 const About = () => {
     useSEO({
         title: 'About Second Thrift — Our Story & Mission',
-        description: 'Learn about Second Thrift — a European-based thrift clothing store offering premium pre-loved fashion at wholesale prices. Sustainable fashion, quality-checked items, and fast EU shipping.',
+        description: 'Learn about Second Thrift — an Indian-based thrift clothing curator shipping premium pre-loved vintage and designer fashion to Europe at wholesale prices.',
         path: '/about',
     });
 
@@ -46,7 +46,7 @@ const About = () => {
                         ABOUT <span className="plug-accent">Second Thrift</span>
                     </h1>
                     <p className="about-hero-sub">
-                        European-based thrift clothing store offering premium pre-loved fashion at wholesale prices
+                        Indian-based thrift clothing curators shipping premium pre-loved vintage & designer fashion to Europe
                     </p>
                 </motion.div>
             </div>
@@ -65,8 +65,8 @@ const About = () => {
                     >
                         <p className="about-story-label">OUR STORY</p>
                         <h2 className="about-story-title">WHO IS BEHIND<br /><span className="plug-accent">Second Thrift?</span></h2>
-                        <p className="about-story-desc">Second Thrift is a European-based thrift clothing store offering premium pre-loved fashion at wholesale prices. We believe in sustainable fashion and giving clothes a second life.</p>
-                        <p className="about-story-desc">We source the best quality second-hand clothing from across Europe, carefully inspect every piece, and offer them at unbeatable bulk prices.</p>
+                        <p className="about-story-desc">Second Thrift is an Indian-based thrift clothing curator offering premium pre-loved fashion at wholesale prices. We believe in sustainable fashion, style circularity, and giving quality streetwear a second life.</p>
+                        <p className="about-story-desc">We source the best quality vintage and designer garments worldwide, inspect them carefully in India, and ship them directly to fashion lovers across Europe at unbeatable prices.</p>
                     </motion.div>
                     <motion.div
                         className="about-story-image"

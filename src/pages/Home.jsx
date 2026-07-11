@@ -51,7 +51,7 @@ const Home = () => {
 
     useSEO({
         title: 'Premium Thrift Fashion | Vintage & Designer Clothing Europe',
-        description: 'Second Thrift — Premium European thrift clothing at wholesale prices. Discover unique vintage, designer, and bulk deals with fast EU shipping. Shop SecondThrift today.',
+        description: 'Second Thrift — Premium vintage & designer thrift clothing curated in India for European style lovers. Discover unique vintage, designer, and bulk deals with shipping to Europe.',
         path: '/',
     });
 
@@ -317,7 +317,7 @@ const Home = () => {
                         >
                             <p className="plug-about-label">FIND OUT.</p>
                             <h2 className="plug-about-title">WHO IS BEHIND<br />SECOND THRIFT?</h2>
-                            <p className="plug-about-desc">We are passionate about bringing the best vintage and designer streetwear from Europe to you. Every piece is hand-picked for quality and style.</p>
+                            <p className="plug-about-desc">We are passionate about curating the best vintage and designer streetwear in India and delivering it directly to Europe. Every piece is hand-picked for quality and style.</p>
                             <Link to="/about" className="plug-about-btn">BEHIND SECOND THRIFT</Link>
                         </motion.div>
                         <motion.div

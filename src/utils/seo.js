@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 const SITE_URL = 'https://www.secondthriftt.com';
 const SITE_NAME = 'Second Thrift';
-const DEFAULT_DESCRIPTION = 'Second Thrift — Premium European thrift clothing at wholesale prices. Discover unique vintage, designer, and bulk deals with fast EU shipping.';
+const DEFAULT_DESCRIPTION = 'Second Thrift — Premium vintage & designer thrift clothing curated in India for European style lovers. Discover unique vintage, designer, and bulk deals with shipping to Europe.';
 const DEFAULT_IMAGE = `${SITE_URL}/favicon.png`;
 
 /**
