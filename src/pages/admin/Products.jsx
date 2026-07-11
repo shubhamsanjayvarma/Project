@@ -23,7 +23,7 @@ const AdminProducts = () => {
     const [showForm, setShowForm] = useState(false);
     const [editProduct, setEditProduct] = useState(null);
     const [form, setForm] = useState({ ...EMPTY_FORM });
-    const [mediaFiles, setMediaFiles] = useState([]);
+    const [mediaItems, setMediaItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
@@ -51,10 +51,20 @@ const AdminProducts = () => {
 
     const generateSKU = () => `ST-${Date.now().toString(36).toUpperCase()}`;
 
+    const closeForm = () => {
+        mediaItems.forEach(item => {
+            if (item.type === 'file' && item.preview) {
+                URL.revokeObjectURL(item.preview);
+            }
+        });
+        setMediaItems([]);
+        setShowForm(false);
+    };
+
     const openAdd = () => {
         setEditProduct(null);
         setForm({ ...EMPTY_FORM, sku: generateSKU() });
-        setMediaFiles([]);
+        setMediaItems([]);
         setShowForm(true);
         setTimeout(() => formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
     };
@@ -74,7 +84,7 @@ const AdminProducts = () => {
             tags: product.tags || [],
             images: product.images || [],
         });
-        setMediaFiles([]);
+        setMediaItems(product.images?.map((url, i) => ({ id: `existing-${i}-${url}`, type: 'url', value: url })) || []);
         setShowForm(true);
         setTimeout(() => formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
     };
@@ -84,11 +94,15 @@ const AdminProducts = () => {
         if (!form.name || isNaN(parsedPrice)) { toast.error('Name and a valid price are required'); return; }
         setSaving(true);
         try {
-            let newImageUrls = [];
-            if (mediaFiles.length > 0) {
-                toast.success(`Uploading ${mediaFiles.length} file(s)...`);
-                newImageUrls = await Promise.all(mediaFiles.map(f => uploadProductMedia(f)));
-            }
+            toast.success('Saving product media...');
+            // Upload all new files while maintaining their index position in the array
+            const images = await Promise.all(mediaItems.map(async (item) => {
+                if (item.type === 'file') {
+                    return await uploadProductMedia(item.value);
+                }
+                return item.value; // Already a URL
+            }));
+
             const stockValue = parseInt(form.stock);
             const lowStockValue = parseInt(form.lowStockAlert);
             const productData = {
@@ -97,7 +111,7 @@ const AdminProducts = () => {
                 comparePrice: form.comparePrice ? parseFloat(form.comparePrice) : null,
                 stock: isNaN(stockValue) ? 0 : stockValue,
                 lowStockAlert: isNaN(lowStockValue) ? 3 : lowStockValue,
-                images: [...(form.images || []), ...newImageUrls],
+                images,
             };
             if (editProduct) {
                 await updateProduct(editProduct.id, productData);
@@ -107,7 +121,13 @@ const AdminProducts = () => {
                 toast.success('Product added!');
             }
             setShowForm(false);
-            setMediaFiles([]);
+            // Revoke object URLs to avoid memory leaks
+            mediaItems.forEach(item => {
+                if (item.type === 'file' && item.preview) {
+                    URL.revokeObjectURL(item.preview);
+                }
+            });
+            setMediaItems([]);
         } catch (err) {
             console.error(err);
             toast.error(err.message || 'Failed to save product/media');
@@ -149,8 +169,36 @@ const AdminProducts = () => {
 
     const removeTag = (tag) => setForm(prev => ({ ...prev, tags: (prev.tags || []).filter(t => t !== tag) }));
 
-    const removeMedia = (index) => setForm(prev => ({ ...prev, images: prev.images.filter((_, i) => i !== index) }));
-    const removeNewMedia = (index) => setMediaFiles(prev => prev.filter((_, i) => i !== index));
+    const removeMediaItem = (id) => {
+        setMediaItems(prev => {
+            const item = prev.find(i => i.id === id);
+            if (item && item.type === 'file' && item.preview) {
+                URL.revokeObjectURL(item.preview);
+            }
+            return prev.filter(i => i.id !== id);
+        });
+    };
+
+    const setAsCover = (index) => {
+        setMediaItems(prev => {
+            const next = [...prev];
+            const [item] = next.splice(index, 1);
+            next.unshift(item);
+            return next;
+        });
+    };
+
+    const moveItem = (index, direction) => {
+        setMediaItems(prev => {
+            const next = [...prev];
+            const targetIndex = index + direction;
+            if (targetIndex < 0 || targetIndex >= next.length) return prev;
+            const temp = next[index];
+            next[index] = next[targetIndex];
+            next[targetIndex] = temp;
+            return next;
+        });
+    };
 
     const addYoutubeLink = () => {
         const link = youtubeInput.trim();
@@ -159,7 +207,7 @@ const AdminProducts = () => {
             toast.error('Please enter a valid YouTube link');
             return;
         }
-        setForm(prev => ({ ...prev, images: [...(prev.images || []), link] }));
+        setMediaItems(prev => [...prev, { id: `youtube-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`, type: 'url', value: link }]);
         setYoutubeInput('');
         toast.success('YouTube link added');
     };
@@ -258,12 +306,12 @@ const AdminProducts = () => {
             {/* ==================== ADD / EDIT FORM ==================== */}
             <AnimatePresence>
                 {showForm && (
-                    <motion.div className="ap-form-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={() => setShowForm(false)}>
+                    <motion.div className="ap-form-overlay" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={closeForm}>
                         <motion.div className="ap-form-panel" ref={formRef} initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} transition={{ type: 'spring', damping: 25 }} onClick={e => e.stopPropagation()}>
                             {/* Form Header */}
                             <div className="ap-form-header">
                                 <h2>{editProduct ? 'Edit Product' : 'Add New Product'}</h2>
-                                <button className="ap-close-btn" onClick={() => setShowForm(false)}><FiX size={22} /></button>
+                                <button className="ap-close-btn" onClick={closeForm}><FiX size={22} /></button>
                             </div>
 
                             <div className="ap-form-body">
@@ -415,7 +463,18 @@ const AdminProducts = () => {
                                             <FiImage size={28} />
                                             <p>Click or drag to upload images & videos</p>
                                             <span>JPG, PNG, WEBP, MP4 - Max 10MB each</span>
-                                            <input type="file" accept="image/jpeg,image/png,image/webp,video/mp4" multiple onChange={(e) => { if (e.target.files) setMediaFiles(prev => [...prev, ...Array.from(e.target.files)]); }} />
+                                            <input type="file" accept="image/jpeg,image/png,image/webp,video/mp4" multiple onChange={(e) => {
+                                                if (e.target.files) {
+                                                    const files = Array.from(e.target.files);
+                                                    const newItems = files.map(file => ({
+                                                        id: `new-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+                                                        type: 'file',
+                                                        value: file,
+                                                        preview: URL.createObjectURL(file)
+                                                    }));
+                                                    setMediaItems(prev => [...prev, ...newItems]);
+                                                }
+                                            }} />
                                         </div>
                                     </div>
                                     <div className="ap-youtube-upload" style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
@@ -437,34 +496,48 @@ const AdminProducts = () => {
                                         </button>
                                     </div>
                                     {/* Preview Grid */}
-                                    {(form.images?.length > 0 || mediaFiles.length > 0) && (
+                                    {mediaItems.length > 0 && (
                                         <div className="ap-media-grid">
-                                            {form.images?.map((url, i) => {
-                                                const isVideo = isVideoUrl(url) || isYouTubeUrl(url);
+                                            {mediaItems.map((item, i) => {
+                                                const isCover = i === 0;
                                                 return (
-                                                    <div key={`existing-${i}`} className="ap-media-item" style={{ position: 'relative' }}>
-                                                        <SmartMedia src={url} alt="" className="ap-media-preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} videoProps={{ autoPlay: false }} isThumbnail={true} />
-                                                        {isVideo && (
-                                                            <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', pointerEvents: 'none', color: '#fff', fontSize: '24px', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
-                                                                ▶
-                                                            </div>
+                                                    <div key={item.id} className={`ap-media-item ${item.type === 'file' ? 'ap-media-new' : ''}`} style={{ position: 'relative' }}>
+                                                        {item.type === 'url' ? (
+                                                            <>
+                                                                <SmartMedia src={item.value} alt="" className="ap-media-preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} videoProps={{ autoPlay: false }} isThumbnail={true} />
+                                                                {(isVideoUrl(item.value) || isYouTubeUrl(item.value)) && (
+                                                                    <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', pointerEvents: 'none', color: '#fff', fontSize: '24px', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
+                                                                        ▶
+                                                                    </div>
+                                                                )}
+                                                            </>
+                                                        ) : (
+                                                            item.value.type.startsWith('video/') ? (
+                                                                <video src={item.preview} muted className="ap-media-preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                                            ) : (
+                                                                <img src={item.preview} alt="" className="ap-media-preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                                            )
                                                         )}
-                                                        <button className="ap-media-remove" onClick={() => removeMedia(i)}><FiX size={12} /></button>
-                                                        {i === 0 && <span className="ap-media-badge">Cover</span>}
+
+                                                        {/* Reorder and Cover Controls */}
+                                                        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(0,0,0,0.7)', padding: '4px 6px', zIndex: 10 }}>
+                                                            {i > 0 ? (
+                                                                <button type="button" onClick={() => moveItem(i, -1)} style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', padding: '2px 4px', fontSize: '11px', lineHeight: 1 }} title="Move Left">◀</button>
+                                                            ) : <div />}
+                                                            {!isCover && (
+                                                                <button type="button" onClick={() => setAsCover(i)} style={{ background: 'rgba(255,255,255,0.2)', border: 'none', color: 'white', cursor: 'pointer', padding: '2px 6px', borderRadius: '3px', fontSize: '9px', textTransform: 'uppercase', fontWeight: 'bold', lineHeight: 1 }} title="Set as Cover">Cover</button>
+                                                            )}
+                                                            {i < mediaItems.length - 1 ? (
+                                                                <button type="button" onClick={() => moveItem(i, 1)} style={{ background: 'none', border: 'none', color: 'white', cursor: 'pointer', padding: '2px 4px', fontSize: '11px', lineHeight: 1 }} title="Move Right">▶</button>
+                                                            ) : <div />}
+                                                        </div>
+
+                                                        <button type="button" className="ap-media-remove" onClick={() => removeMediaItem(item.id)}><FiX size={12} /></button>
+                                                        {isCover && <span className="ap-media-badge" style={{ position: 'absolute', top: '4px', left: '4px', bottom: 'auto' }}>Cover</span>}
+                                                        {item.type === 'file' && <span className="ap-media-badge new" style={{ position: 'absolute', top: '4px', left: isCover ? '55px' : '4px', bottom: 'auto' }}>New</span>}
                                                     </div>
                                                 );
                                             })}
-                                            {mediaFiles.map((file, i) => (
-                                                <div key={`new-${i}`} className="ap-media-item ap-media-new">
-                                                    {file.type.startsWith('video/') ? (
-                                                        <video src={URL.createObjectURL(file)} muted className="ap-media-preview" />
-                                                    ) : (
-                                                        <img src={URL.createObjectURL(file)} alt="" className="ap-media-preview" loading="lazy" decoding="async" />
-                                                    )}
-                                                    <button className="ap-media-remove" onClick={() => removeNewMedia(i)}><FiX size={12} /></button>
-                                                    <span className="ap-media-badge new">New</span>
-                                                </div>
-                                            ))}
                                         </div>
                                     )}
                                 </div>
@@ -510,7 +583,7 @@ const AdminProducts = () => {
 
                             {/* Form Footer */}
                             <div className="ap-form-footer">
-                                <button className="btn btn-ghost" onClick={() => setShowForm(false)}>Cancel</button>
+                                <button type="button" className="btn btn-ghost" onClick={closeForm}>Cancel</button>
                                 <button className="btn btn-primary btn-lg" onClick={handleSave} disabled={saving}>
                                     {saving ? 'Saving...' : editProduct ? 'Save Changes' : 'Add Product'}
                                 </button>
