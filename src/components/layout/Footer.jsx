@@ -56,7 +56,7 @@ const Footer = () => {
                         </div>
                         <div className="footer-contact-item">
                             <FiMapPin size={16} />
-                            <span>Europe Based</span>
+                            <span>India Based</span>
                         </div>
                     </div>
                 </div>
