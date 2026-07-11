@@ -37,9 +37,8 @@ export const defaultCategories = [
     { name: 'Japanese', slug: 'japanese', description: 'Japanese Selvedge & Art Denim', order: 4, icon: '🇯🇵' },
     { name: 'Shorts', slug: 'shorts', description: 'Vintage & Streetwear Shorts', order: 5, icon: '🩳' },
     { name: 'Hip Hop', slug: 'hip-hop', description: '90s & 2000s Hip Hop Streetwear', order: 6, icon: '🎤' },
-    { name: 'Outerwear', slug: 'outerwear', description: 'Jackets, Coats, Blazers, Vests', order: 7, icon: '🧥' },
-    { name: 'Vintage', slug: 'vintage', description: '70s, 80s, 90s, 2000s', order: 8, icon: '🎭' },
-    { name: 'Designer', slug: 'designer', description: 'Premium & Luxury Brands', order: 9, icon: '💎' },
-    { name: 'Bulk Deals', slug: 'bulk-deals', description: 'Mixed Bundles & Wholesale Lots', order: 10, icon: '📦' },
+    { name: 'Vintage', slug: 'vintage', description: '70s, 80s, 90s, 2000s', order: 7, icon: '🎭' },
+    { name: 'Designer', slug: 'designer', description: 'Premium & Luxury Brands', order: 8, icon: '💎' },
+    { name: 'Bulk Deals', slug: 'bulk-deals', description: 'Mixed Bundles & Wholesale Lots', order: 9, icon: '📦' },
 ];
 
