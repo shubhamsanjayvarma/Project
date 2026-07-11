@@ -291,7 +291,7 @@ export const BRANDS = [
     'Tommy Hilfiger', 'Calvin Klein', 'Versace', 'Burberry', 'Louis Vuitton', 'Balenciaga',
     'The North Face', 'Patagonia', 'Carhartt', 'Champion', 'New Balance', 'Puma',
     'Reebok', 'Converse', 'Vans', 'Fila', 'Stussy', 'Supreme', 'Off-White',
-    'Diesel', 'Hugo Boss', 'Lacoste', 'Uniqlo', 'GAP', 'Mango', 'Evisu',
+    'True Religion', 'Diesel', 'Hugo Boss', 'Lacoste', 'Uniqlo', 'GAP', 'Mango', 'Evisu',
     'Unbranded', 'Other',
 ];
 
@@ -335,13 +335,13 @@ export const SEASONS = [
 
 // Subcategories mapped to parent category slugs
 export const SUBCATEGORIES = {
-    tops: ['T-Shirts', 'Shirts', 'Polos', 'Blouses', 'Sweaters', 'Hoodies', 'Tank Tops', 'Crop Tops'],
-    bottoms: ['Jeans', 'Trousers', 'Shorts', 'Joggers', 'Skirts', 'Cargo Pants', 'Chinos'],
-    outerwear: ['Jackets', 'Coats', 'Blazers', 'Vests', 'Puffer Jackets', 'Windbreakers', 'Parkas'],
-    dresses: ['Casual', 'Formal', 'Maxi', 'Mini', 'Midi', 'Party', 'Bodycon'],
-    activewear: ['Sportswear', 'Tracksuits', 'Yoga', 'Gym Wear', 'Running', 'Compression'],
-    accessories: ['Bags', 'Belts', 'Scarves', 'Hats', 'Watches', 'Sunglasses', 'Jewellery', 'Wallets'],
-    footwear: ['Sneakers', 'Boots', 'Sandals', 'Loafers', 'Heels', 'Slides', 'Formal Shoes'],
+    jeans: ['Slim Fit', 'Straight Leg', 'Baggy', 'Bootcut', 'Skinny', 'Cargo Denim', 'Selvedge', 'Raw Denim', 'Stonewash', 'Light Wash', 'Dark Wash'],
+    levis: ["501 Original", "502 Taper", "505 Regular", "511 Slim", "512 Slim Taper", "514 Straight", "517 Bootcut", "527 Bootcut", "550 Relaxed", "569 Loose", "Boot Cut", "Orange Tab", "Red Tab"],
+    'true-religion': ['Ricky', 'Bobby', 'Geno', 'Rocco', 'Joey', 'Billy', 'Straight', 'Slim', 'Bootcut', 'Skinny'],
+    japanese: ['Selvedge Denim', 'Art Print', 'Oni Denim', 'Studio D\'Artisan', 'Samurai Jeans', 'Kapital', 'Evisu', 'Yoropiko', 'Embroidered'],
+    shorts: ['Cargo Shorts', 'Denim Shorts', 'Basketball Shorts', 'Board Shorts', 'Chino Shorts', 'Track Shorts', 'Vintage Shorts'],
+    'hip-hop': ['Hoodies', 'Graphic Tees', 'Baggy Jeans', 'Tracksuits', 'Bomber Jackets', 'Jerseys', 'Bucket Hats', 'Oversized'],
+    outerwear: ['Jackets', 'Coats', 'Blazers', 'Vests', 'Puffer Jackets', 'Windbreakers', 'Parkas', 'Denim Jackets'],
     vintage: ['70s', '80s', '90s', '2000s', 'Retro', 'Heritage'],
     designer: ['Premium', 'Luxury', 'Limited Edition', 'Collaboration', 'Runway'],
     'bulk-deals': ['Mixed Bundle', 'Category Bundle', 'Brand Bundle', 'Mystery Box'],

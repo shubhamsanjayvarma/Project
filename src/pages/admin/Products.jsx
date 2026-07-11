@@ -12,7 +12,7 @@ import './Admin.css';
 const EMPTY_FORM = {
     name: '', description: '', brand: '', sku: '',
     price: '', comparePrice: '', stock: '', lowStockAlert: '3',
-    category: 'tops', subcategory: '', condition: 'good', gender: 'unisex', season: 'all-season',
+    category: 'jeans', subcategory: '', condition: 'good', gender: 'unisex', season: 'all-season',
     sizes: [], colors: [], materials: [],
     tags: [], featured: false, visibility: 'active',
     images: [],
