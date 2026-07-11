@@ -37,7 +37,7 @@ const sections = {
         content: [
             {
                 heading: 'Return policy',
-                text: 'We accept returns within 14 days of delivery. Items must be in original, unworn condition with all tags attached.'
+                text: 'We accept returns within 15 days of delivery. Items must be in original, unworn condition with all tags attached.'
             },
             {
                 heading: 'How to initiate a return',
@@ -109,7 +109,7 @@ const sections = {
             },
             {
                 heading: '5. Returns',
-                text: 'Returns are accepted within 14 days of delivery for items in original condition. See our Returns & Refunds page for full details. Bulk deals and mystery boxes are final sale.'
+                text: 'Returns are accepted within 15 days of delivery for items in original condition. See our Returns & Refunds page for full details. Bulk deals and mystery boxes are final sale.'
             },
             {
                 heading: '6. Limitation of Liability',

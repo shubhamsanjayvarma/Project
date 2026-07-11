@@ -98,7 +98,7 @@ const Home = () => {
 
     const faqs = [
         { q: 'How long does shipping take?', a: 'We ship across Europe. Standard delivery takes 3-7 business days depending on your location.' },
-        { q: 'Are returns possible?', a: 'Yes! We offer a 30-day return policy. Contact us via email and we will guide you through the process.' },
+        { q: 'Are returns possible?', a: 'Yes! We offer a 15-day return policy. Contact us via email and we will guide you through the process.' },
         { q: 'Is there free shipping?', a: 'Yes! All our prices are all-inclusive — shipping and taxes are already included in the displayed price. No surprises at checkout.' },
         { q: 'What payment methods do you accept?', a: 'We accept credit/debit cards (Visa, Mastercard), bank transfers via Wise, and more. Available options are shown at checkout.' },
     ];
@@ -527,7 +527,7 @@ const Home = () => {
                         {[
                             { icon: <FiTruck size={28} />, title: 'European Shipping', desc: 'Fast delivery across all EU countries' },
                             { icon: <FiShield size={28} />, title: 'Quality Checked', desc: 'Every item inspected before shipping' },
-                            { icon: <FiRefreshCw size={28} />, title: 'Easy Returns', desc: '30-day return policy' },
+                            { icon: <FiRefreshCw size={28} />, title: 'Easy Returns', desc: '15-day return policy' },
                             { icon: <FiPackage size={28} />, title: 'Bulk Pricing', desc: 'Save more when you buy more' },
                         ].map((item, idx) => (
                             <motion.div

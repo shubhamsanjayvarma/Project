@@ -435,7 +435,7 @@ const ProductDetail = () => {
                         <div className="product-trust">
                             <div><FiTruck /> Shipping from India to Europe available</div>
                             <div><FiShield /> Quality checked before shipping</div>
-                            <div><FiRefreshCw /> Easy returns within 14 days</div>
+                            <div><FiRefreshCw /> Easy returns within 15 days</div>
                         </div>
                     </motion.div>
                 </div>
