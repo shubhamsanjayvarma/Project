@@ -3,7 +3,7 @@ import { FiEye, FiTruck, FiCheckCircle, FiPhone, FiRefreshCw, FiTrash2 } from 'r
 import { FaWhatsapp } from 'react-icons/fa';
 import { useToast } from '../../components/common/Toast';
 import { formatPrice, ORDER_STATUSES } from '../../utils/helpers';
-import { subscribeToAllOrders, updateOrderStatus, deleteOrder } from '../../services/orders';
+import { subscribeToAllOrders, updateOrderStatus, deleteOrder, updateOrderPaymentStatus } from '../../services/orders';
 import { getWhatsAppLink } from '../../services/whatsapp';
 import './Admin.css';
 
@@ -137,6 +137,33 @@ const AdminOrders = () => {
                             <span className={`badge badge-${selectedOrder.paymentStatus === 'paid' ? 'success' : selectedOrder.paymentStatus === 'refunded' ? 'error' : 'warning'}`}>
                                 {selectedOrder.paymentStatus === 'paid' ? 'Paid' : selectedOrder.paymentStatus === 'refunded' ? 'Refunded' : 'Pending Payment'}
                             </span>
+                            {selectedOrder.paymentStatus === 'pending' && selectedOrder.stripeSessionId && (
+                                <button
+                                    className="btn btn-ghost btn-sm"
+                                    style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', padding: '2px 6px', height: 'auto', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)' }}
+                                    onClick={async () => {
+                                        try {
+                                            toast.loading('Syncing with Stripe...', { id: 'admin-payment-sync' });
+                                            const apiUrl = import.meta.env.VITE_API_URL || '';
+                                            const res = await fetch(`${apiUrl}/api/stripe/verify/${selectedOrder.stripeSessionId}`);
+                                            if (!res.ok) throw new Error('Verification request failed');
+                                            const data = await res.json();
+                                            if (data.verified) {
+                                                await updateOrderPaymentStatus(selectedOrder.id, 'paid', selectedOrder.stripeSessionId);
+                                                setSelectedOrder(prev => ({ ...prev, paymentStatus: 'paid' }));
+                                                toast.success('Payment verified and order updated in Firestore!', { id: 'admin-payment-sync' });
+                                            } else {
+                                                toast.error(`Payment status on Stripe: ${data.paymentStatus || 'unpaid'}`, { id: 'admin-payment-sync' });
+                                            }
+                                        } catch (err) {
+                                            console.error('Sync failed:', err);
+                                            toast.error(err.message || 'Failed to sync status with Stripe.', { id: 'admin-payment-sync' });
+                                        }
+                                    }}
+                                >
+                                    <FiRefreshCw size={12} /> Sync Status
+                                </button>
+                            )}
                         </div>
 
                         <div className="order-detail-grid">

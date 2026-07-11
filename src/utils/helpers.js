@@ -266,7 +266,7 @@ export const COUNTRY_CURRENCY = {
 
 export const getCurrencyForCountry = (country) => COUNTRY_CURRENCY[country] || 'EUR';
 
-export const getPaymentCurrencyForCountry = (country) => (country === 'India' ? 'INR' : 'EUR');
+export const getPaymentCurrencyForCountry = (country) => 'EUR';
 
 // Flat list of all countries (for backward compatibility)
 export const ALL_COUNTRIES = Object.values(COUNTRIES_BY_REGION).flat();

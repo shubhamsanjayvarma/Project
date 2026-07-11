@@ -197,10 +197,15 @@ const Checkout = () => {
                 throw new Error(errData.error || 'Failed to create payment session');
             }
 
-            const { url } = await res.json();
+            const { url, sessionId } = await res.json();
 
             // 3. Redirect to Stripe Checkout
             if (url) {
+                try {
+                    await updateOrderPaymentStatus(newOrderId, 'pending', sessionId);
+                } catch (saveErr) {
+                    console.error('Failed to save stripeSessionId to order:', saveErr);
+                }
                 window.location.href = url;
             } else {
                 throw new Error('No checkout URL returned');
@@ -208,7 +213,7 @@ const Checkout = () => {
 
         } catch (err) {
             console.error(err);
-            toast.error('Failed to initialize payment. Please try again.', { id: 'payment-toast' });
+            toast.error(err.message || 'Failed to initialize payment. Please try again.', { id: 'payment-toast' });
         } finally {
             setLoading(false);
         }

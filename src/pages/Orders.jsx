@@ -5,7 +5,7 @@ import { FiShoppingBag, FiPackage, FiCreditCard } from 'react-icons/fi';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../components/common/Toast';
 import { formatPrice, ORDER_STATUSES } from '../utils/helpers';
-import { getOrdersByUser } from '../services/orders';
+import { getOrdersByUser, updateOrderPaymentStatus } from '../services/orders';
 import './Orders.css';
 
 const Orders = () => {
@@ -54,12 +54,20 @@ const Orders = () => {
             });
 
             if (!res.ok) throw new Error('Failed to create payment session');
-            const { url } = await res.json();
-            if (url) window.location.href = url;
-            else throw new Error('No checkout URL returned');
+            const { url, sessionId } = await res.json();
+            if (url) {
+                try {
+                    await updateOrderPaymentStatus(order.id, 'pending', sessionId);
+                } catch (saveErr) {
+                    console.error('Failed to save stripeSessionId to order:', saveErr);
+                }
+                window.location.href = url;
+            } else {
+                throw new Error('No checkout URL returned');
+            }
         } catch (err) {
             console.error(err);
-            toast.error('Failed to initialize payment. Please try again.', { id: 'payment-toast' });
+            toast.error(err.message || 'Failed to initialize payment. Please try again.', { id: 'payment-toast' });
             setPayingOrderId(null);
         }
     };
