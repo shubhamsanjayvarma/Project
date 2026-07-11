@@ -7,7 +7,7 @@ import { defaultCategories } from '../services/categories';
 import { subscribeToFeaturedProducts } from '../services/products';
 
 // Hero & banner images — picked for BRIGHT contrast with text overlays
-import heroImg from '../assets/second-thrift-branded.jpeg';
+const heroImg = '/hero-bg.jpeg';
 import latestDropImg from '../assets/evisu-colorful.jpeg';
 import premiumDenimImg from '../assets/true-religion-collection.jpeg';
 import outerwearImg from '../assets/bulk-inventory.jpeg';
