@@ -72,6 +72,28 @@ export const updateOrderPaymentStatus = async (id, paymentStatus, stripeSessionI
     });
 };
 
+export const updateOrderShipping = async (id, trackingNumber, serviceCode) => {
+    await updateDoc(doc(db, 'orders', id), {
+        status: 'shipped',
+        shippingCarrier: 'Ship Global',
+        trackingNumber,
+        shippingServiceCode: serviceCode,
+        shippedAt: serverTimestamp(),
+        updatedAt: serverTimestamp(),
+    });
+};
+
+export const cancelOrderShipping = async (id, notes = '') => {
+    await updateDoc(doc(db, 'orders', id), {
+        status: 'payment_received',
+        shippingCarrier: null,
+        trackingNumber: null,
+        shippingServiceCode: null,
+        notes: notes || 'Shipping order cancelled',
+        updatedAt: serverTimestamp(),
+    });
+};
+
 export const deleteOrder = async (id) => {
     await deleteDoc(doc(db, 'orders', id));
 };

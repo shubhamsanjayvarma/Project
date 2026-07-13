@@ -34,6 +34,7 @@ const Footer = () => {
                         <h4>Customer Service</h4>
                         <Link to="/contact">Contact Us</Link>
                         <Link to="/shipping">Shipping Info</Link>
+                        <Link to="/track">Track Shipment</Link>
                         <Link to="/returns">Returns & Refunds</Link>
                         <Link to="/faq">FAQ</Link>
                         <Link to="/terms">Terms & Conditions</Link>

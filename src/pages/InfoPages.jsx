@@ -23,7 +23,7 @@ const sections = {
             },
             {
                 heading: 'Tracking',
-                text: 'You will receive a tracking number via WhatsApp or email once your order is shipped. You can track your package at any time.'
+                text: <>You will receive a tracking number via WhatsApp or email once your order is shipped. You can track your package at any time directly on our <Link to="/track" style={{ color: 'var(--primary)', textDecoration: 'underline' }}>Track Shipment</Link> page.</>
             },
             {
                 heading: 'Bulk orders',

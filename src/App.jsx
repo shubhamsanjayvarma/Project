@@ -29,6 +29,7 @@ const ReturnsPage = lazy(() => import('./pages/InfoPages').then(m => ({ default:
 const FAQPage = lazy(() => import('./pages/InfoPages').then(m => ({ default: m.FAQPage })));
 const TermsPage = lazy(() => import('./pages/InfoPages').then(m => ({ default: m.TermsPage })));
 const PrivacyPage = lazy(() => import('./pages/InfoPages').then(m => ({ default: m.PrivacyPage })));
+const TrackShipment = lazy(() => import('./pages/TrackShipment'));
 
 // Admin
 const AdminLayout = lazy(() => import('./pages/admin/AdminLayout'));
@@ -115,6 +116,7 @@ function App() {
                 <Route path="/faq" element={<CustomerLayout><FAQPage /></CustomerLayout>} />
                 <Route path="/terms" element={<CustomerLayout><TermsPage /></CustomerLayout>} />
                 <Route path="/privacy" element={<CustomerLayout><PrivacyPage /></CustomerLayout>} />
+                <Route path="/track" element={<CustomerLayout><TrackShipment /></CustomerLayout>} />
 
                 {/* 404 */}
                 <Route path="*" element={

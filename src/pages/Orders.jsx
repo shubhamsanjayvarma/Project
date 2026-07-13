@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FiShoppingBag, FiPackage, FiCreditCard } from 'react-icons/fi';
+import { FiShoppingBag, FiPackage, FiCreditCard, FiActivity, FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../components/common/Toast';
 import { formatPrice, ORDER_STATUSES } from '../utils/helpers';
@@ -15,6 +15,40 @@ const Orders = () => {
     const [orders, setOrders] = useState([]);
     const [loading, setLoading] = useState(true);
     const [payingOrderId, setPayingOrderId] = useState(null);
+
+    // Ship Global Tracking States
+    const [trackingUpdates, setTrackingUpdates] = useState({});
+    const [loadingTrackingId, setLoadingTrackingId] = useState(null);
+    const [expandedTrackingId, setExpandedTrackingId] = useState(null);
+
+    const handleTrackOrder = async (orderId, trackingNumber) => {
+        if (expandedTrackingId === orderId) {
+            setExpandedTrackingId(null);
+            return;
+        }
+        
+        if (trackingUpdates[orderId]) {
+            setExpandedTrackingId(orderId);
+            return;
+        }
+
+        setLoadingTrackingId(orderId);
+        try {
+            const apiUrl = import.meta.env.VITE_API_URL || '';
+            const res = await fetch(`${apiUrl}/api/shipglobal/track/${trackingNumber}`);
+            const data = await res.json();
+            if (!res.ok || !data.success) {
+                throw new Error(data.error || 'Failed to fetch tracking information');
+            }
+            setTrackingUpdates(prev => ({ ...prev, [orderId]: data.data }));
+            setExpandedTrackingId(orderId);
+        } catch (err) {
+            console.error(err);
+            toast.error('Unable to fetch live tracking updates. Please try again later.');
+        } finally {
+            setLoadingTrackingId(null);
+        }
+    };
 
     useEffect(() => {
         if (!user) {
@@ -127,6 +161,59 @@ const Orders = () => {
                                             </div>
                                         ))}
                                     </div>
+
+                                    {/* Ship Global Tracking TIMELINE */}
+                                    {order.trackingNumber && order.shippingCarrier === 'Ship Global' && (
+                                        <div style={{ padding: '1rem', background: 'var(--bg-surface)', borderTop: '1px solid var(--border-color)', borderBottom: '1px solid var(--border-color)', margin: '1rem 0', borderRadius: 'var(--radius-md)' }}>
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
+                                                <div>
+                                                    <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', display: 'block' }}>Shipping Carrier</span>
+                                                    <span style={{ fontWeight: 600, fontSize: 'var(--text-sm)' }}>Ship Global</span>
+                                                </div>
+                                                <div>
+                                                    <span style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', display: 'block' }}>Tracking Number</span>
+                                                    <span style={{ fontWeight: 600, fontSize: 'var(--text-sm)', fontFamily: 'monospace' }}>{order.trackingNumber}</span>
+                                                </div>
+                                                <button
+                                                    className="btn btn-ghost btn-sm"
+                                                    onClick={() => handleTrackOrder(order.id, order.trackingNumber)}
+                                                    disabled={loadingTrackingId === order.id}
+                                                    style={{ display: 'flex', alignItems: 'center', gap: '6px' }}
+                                                >
+                                                    {loadingTrackingId === order.id ? 'Loading...' : expandedTrackingId === order.id ? (
+                                                        <>Hide Status <FiChevronUp /></>
+                                                    ) : (
+                                                        <>Track Shipment <FiChevronDown /></>
+                                                    )}
+                                                </button>
+                                            </div>
+
+                                            {expandedTrackingId === order.id && trackingUpdates[order.id] && (
+                                                <div style={{ marginTop: '1rem', paddingTop: '1rem', borderTop: '1px dashed var(--border-color)' }}>
+                                                    {trackingUpdates[order.id].awbEvents && trackingUpdates[order.id].awbEvents.length > 0 ? (
+                                                        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', paddingLeft: '8px', borderLeft: '2px solid var(--primary)', position: 'relative' }}>
+                                                            {trackingUpdates[order.id].awbEvents.map((evt, idx) => (
+                                                                <div key={idx} style={{ position: 'relative', paddingLeft: '4px' }}>
+                                                                    <div style={{ position: 'absolute', left: '-13px', top: '4px', width: '8px', height: '8px', borderRadius: '50%', background: idx === 0 ? 'var(--primary)' : '#ccc' }} />
+                                                                    <div style={{ fontWeight: idx === 0 ? 600 : 500, fontSize: 'var(--text-sm)', color: idx === 0 ? 'var(--text-primary)' : 'var(--text-secondary)' }}>
+                                                                        {evt.awb_history_comment}
+                                                                    </div>
+                                                                    <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', marginTop: '2px' }}>
+                                                                        {evt.awb_history_datetime} • {evt.awb_history_location}
+                                                                    </div>
+                                                                </div>
+                                                            ))}
+                                                        </div>
+                                                    ) : (
+                                                        <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', textAlign: 'center', padding: '0.5rem 0' }}>
+                                                            Shipment created. Awaiting package pickup by Ship Global.
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            )}
+                                        </div>
+                                    )}
+
                                     <div className="order-card-footer" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
                                         <span className="order-total">Total: {formatPrice(order.total)}</span>
                                         

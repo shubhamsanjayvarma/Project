@@ -575,6 +575,131 @@ app.post('/api/stripe/refund', requireAdmin, async (req, res) => {
     }
 });
 
+// ============ SHIP GLOBAL INTEGRATION ============
+
+// 1. Add Order (admin only)
+app.post('/api/shipglobal/add-order', requireAdmin, async (req, res) => {
+    try {
+        const email = process.env.SHIPGLOBAL_EMAIL;
+        const password = process.env.SHIPGLOBAL_PASSWORD;
+        if (!email || !password) {
+            return res.status(500).json({ error: 'Ship Global API credentials are not configured on the server.' });
+        }
+
+        const authHeader = 'Basic ' + Buffer.from(`${email}:${password}`).toString('base64');
+
+        const response = await fetch('https://app.shipglobal.in/apiv1/order/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': authHeader
+            },
+            body: JSON.stringify(req.body)
+        });
+
+        const data = await response.json();
+        res.status(response.status).json(data);
+    } catch (err) {
+        console.error('Ship Global Add Order error:', err);
+        res.status(500).json({ error: 'Failed to add order to Ship Global' });
+    }
+});
+
+// 2. Get Label (admin only)
+app.post('/api/shipglobal/get-label', requireAdmin, async (req, res) => {
+    try {
+        const email = process.env.SHIPGLOBAL_EMAIL;
+        const password = process.env.SHIPGLOBAL_PASSWORD;
+        if (!email || !password) {
+            return res.status(500).json({ error: 'Ship Global API credentials are not configured on the server.' });
+        }
+
+        const authHeader = 'Basic ' + Buffer.from(`${email}:${password}`).toString('base64');
+
+        const response = await fetch('https://app.shipglobal.in/apiv1/order/getLabel', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': authHeader
+            },
+            body: JSON.stringify({
+                tracking: req.body.tracking,
+                label: req.body.label !== false
+            })
+        });
+
+        const data = await response.json();
+        res.status(response.status).json(data);
+    } catch (err) {
+        console.error('Ship Global Get Label error:', err);
+        res.status(500).json({ error: 'Failed to retrieve shipping label from Ship Global' });
+    }
+});
+
+// 3. Cancel & Refund Order (admin only)
+app.post('/api/shipglobal/cancel-order', requireAdmin, async (req, res) => {
+    try {
+        const email = process.env.SHIPGLOBAL_EMAIL;
+        const password = process.env.SHIPGLOBAL_PASSWORD;
+        if (!email || !password) {
+            return res.status(500).json({ error: 'Ship Global API credentials are not configured on the server.' });
+        }
+
+        const authHeader = 'Basic ' + Buffer.from(`${email}:${password}`).toString('base64');
+
+        const response = await fetch('https://app.shipglobal.in/apiv1/order/cancelRefundOrder', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': authHeader
+            },
+            body: JSON.stringify({
+                tracking: req.body.tracking
+            })
+        });
+
+        const data = await response.json();
+        res.status(response.status).json(data);
+    } catch (err) {
+        console.error('Ship Global Cancel Order error:', err);
+        res.status(500).json({ error: 'Failed to cancel order with Ship Global' });
+    }
+});
+
+// 4. Tracking (public)
+app.get('/api/shipglobal/track/:trackingId', async (req, res) => {
+    try {
+        const email = process.env.SHIPGLOBAL_EMAIL;
+        const password = process.env.SHIPGLOBAL_PASSWORD;
+        if (!email || !password) {
+            return res.status(500).json({ error: 'Ship Global API credentials are not configured on the server.' });
+        }
+
+        const authHeader = 'Basic ' + Buffer.from(`${email}:${password}`).toString('base64');
+
+        const response = await fetch('https://app.shipglobal.in/apiv1/tools/tracking', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': authHeader
+            },
+            body: JSON.stringify({
+                tracking: req.params.trackingId
+            })
+        });
+
+        const data = await response.json();
+        res.status(response.status).json(data);
+    } catch (err) {
+        console.error('Ship Global Tracking error:', err);
+        res.status(500).json({ error: 'Failed to retrieve tracking details from Ship Global' });
+    }
+});
+
 // ============ ERROR HANDLING ============
 app.use((err, req, res, next) => {
     if (err instanceof multer.MulterError) {
