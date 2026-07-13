@@ -97,7 +97,7 @@ const TrackShipment = () => {
                                     <span className="track-info-val">Ship Global</span>
                                 </div>
                                 <div>
-                                    <span className="track-info-label">AWB Tracking Number</span>
+                                    <span className="track-info-label">AWB Number</span>
                                     <span className="track-info-val" style={{ fontFamily: 'monospace' }}>{trackingData.awbInfo?.awb_number}</span>
                                 </div>
                                 <div>
@@ -105,10 +105,34 @@ const TrackShipment = () => {
                                     <span className="track-info-val" style={{ color: 'var(--primary)' }}>{trackingData.awbInfo?.awb_status || 'IN TRANSIT'}</span>
                                 </div>
                                 <div>
-                                    <span className="track-info-label">Destination Country</span>
-                                    <span className="track-info-val">{trackingData.awbInfo?.dest_country_code || 'N/A'}</span>
+                                    <span className="track-info-label">Destination</span>
+                                    <span className="track-info-val">{trackingData.awbInfo?.awb_destination || 'N/A'}</span>
                                 </div>
+                                {trackingData.awbInfo?.awb_receiver_name && (
+                                    <div>
+                                        <span className="track-info-label">Receiver</span>
+                                        <span className="track-info-val">{trackingData.awbInfo.awb_receiver_name}</span>
+                                    </div>
+                                )}
+                                {trackingData.awbInfo?.partner_lastmile_display && (
+                                    <div>
+                                        <span className="track-info-label">Last-Mile Carrier</span>
+                                        <span className="track-info-val">{trackingData.awbInfo.partner_lastmile_display}</span>
+                                    </div>
+                                )}
                             </div>
+
+                            {trackingData.awbInfo?.partner_lastmile_tracking_url && (
+                                <a
+                                    href={trackingData.awbInfo.partner_lastmile_tracking_url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="btn btn-ghost"
+                                    style={{ width: '100%', justifyContent: 'center', marginBottom: 'var(--space-4)', display: 'flex', alignItems: 'center', gap: '8px', fontSize: 'var(--text-sm)' }}
+                                >
+                                    <FiTruck size={16} /> Track on {trackingData.awbInfo.partner_lastmile_display || 'Last-Mile Carrier'} →
+                                </a>
+                            )}
 
                             <div className="track-timeline-wrapper">
                                 <h3 style={{ fontSize: 'var(--text-lg)', marginBottom: 'var(--space-4)', display: 'flex', alignItems: 'center', gap: '8px' }}>
