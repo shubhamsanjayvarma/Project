@@ -129,7 +129,7 @@ const About = () => {
                     {[
                         { icon: <FiCheckCircle size={24} />, title: 'QUALITY CHECKED', text: 'Every item inspected before shipping', img: qualityImg, width: 1040, height: 1040, contain: true },
                         { icon: <FiPackage size={24} />, title: 'BULK PRICING', text: 'Wholesale deals for smart buyers', img: bulkImg, width: 780, height: 1040 },
-                        { icon: <FiGlobe size={24} />, title: 'EU SHIPPING', text: 'Fast delivery across Europe', img: shippingImg, width: 960, height: 1280 },
+                        { icon: <FiGlobe size={24} />, title: 'FREE SHIPPING', text: 'Fast shipping across Europe', img: shippingImg, width: 960, height: 1280 },
                     ].map((feature, idx) => (
                         <motion.div
                             key={idx}
