@@ -2237,20 +2237,16 @@
     .admin-table thead {
         display: none;
     }
-
     .ap-product-row {
         display: flex;
         flex-wrap: wrap;
         background: var(--admin-surface);
         border: 1px solid var(--admin-border);
         border-radius: 16px;
-        /* Elegant modern rounding */
         margin-bottom: 1.25rem;
         padding: 1.25rem;
-        /* Spacious touch padding */
         position: relative;
         gap: 0.5rem;
-        /* Ensure inner elements don't crash */
     }
 
     .admin-table td {
@@ -2266,52 +2262,50 @@
     .ap-td-img {
         width: 70px;
         margin-right: 1rem;
-        margin-bottom: 0.75rem;
+        margin-bottom: 0.5rem;
     }
 
     .ap-td-img .ap-table-thumb {
         width: 70px !important;
         height: 70px !important;
-        border-radius: 8px;
+        border-radius: 10px;
     }
 
     .ap-td-name {
-        flex: 1;
+        width: calc(100% - 90px) !important;
+        flex: none !important;
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
-        margin-bottom: 0.75rem;
-        padding-right: 2.5rem !important;
-        /* space for actions */
+        margin-bottom: 0.5rem;
+        padding-right: 4.5rem !important; /* Spacing for absolute action buttons */
     }
 
     .ap-td-name strong {
-        font-size: 0.95rem;
+        font-size: 0.98rem;
         line-height: 1.3;
         margin-bottom: 4px;
+        color: #fff;
     }
 
-    .ap-td-actions {
-        width: 100%;
-        margin-top: 0.75rem;
-        position: relative;
-        top: 0;
-        right: 0;
+    .ap-td-brand {
+        display: inline-flex !important;
+        width: auto !important;
+        margin-left: 86px;
+        margin-bottom: 0.75rem;
     }
 
-    .admin-table-actions {
-        flex-direction: column;
-        gap: 0.5rem;
-        width: 100%;
-    }
-
-    .admin-table-actions .btn {
-        width: 100%;
-        justify-content: center;
+    .ap-td-category {
+        display: inline-flex !important;
+        width: auto !important;
+        color: var(--admin-text-muted);
+        font-size: 0.8rem;
+        margin-left: 8px;
+        margin-bottom: 0.75rem;
     }
 
     .ap-td-price {
-        width: 100%;
+        width: 100% !important;
         border-top: 1px solid var(--admin-border);
         padding-top: 0.75rem !important;
         margin-top: 0.25rem;
@@ -2327,46 +2321,69 @@
     }
 
     .ap-td-price strong {
-        font-size: 1.25rem;
+        font-size: 1.15rem;
         color: #fff;
     }
 
     .ap-td-stock,
+    .ap-td-grade,
     .ap-td-status {
-        width: 50%;
+        width: 33.33% !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
         padding-top: 0.75rem !important;
-        justify-content: space-between;
-    }
-
-    .ap-td-stock {
-        padding-right: 0.5rem !important;
-    }
-
-    .ap-td-status {
-        padding-left: 0.5rem !important;
+        border-top: 1px solid var(--admin-border);
+        margin-top: 0.25rem;
+        gap: 4px;
     }
 
     .ap-td-stock::before {
         content: 'Stock';
         color: var(--admin-text-muted);
-        font-size: 0.7rem;
+        font-size: 0.65rem;
+        text-transform: uppercase;
+    }
+
+    .ap-td-grade::before {
+        content: 'Grade';
+        color: var(--admin-text-muted);
+        font-size: 0.65rem;
         text-transform: uppercase;
     }
 
     .ap-td-status::before {
         content: 'Status';
         color: var(--admin-text-muted);
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         text-transform: uppercase;
     }
 
-    .ap-td-brand {
-        display: none !important;
+    .ap-td-actions {
+        position: absolute;
+        top: 1.25rem;
+        right: 1.25rem;
+        width: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 
-    .ap-td-category {
-        display: none !important;
+    .admin-table-actions {
+        flex-direction: row !important;
+        gap: 0.4rem !important;
+        width: auto !important;
     }
+
+    .admin-table-actions .btn {
+        width: 32px !important;
+        height: 32px !important;
+        padding: 0 !important;
+        border-radius: 8px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
 
     /* ── ORDERS TABLE CARDS ── */
     .ap-order-row {
@@ -2840,44 +2857,4 @@
         max-width: 280px;
     }
 }
-
-/* ── OVERRIDE MOBILE TABLES TO HORIZONTAL SCROLL ── */
-@media (max-width: 768px) {
-    .admin-table-container {
-        display: block !important;
-        width: 100% !important;
-        overflow-x: auto !important;
-        white-space: nowrap !important;
-        -webkit-overflow-scrolling: touch !important;
-        padding-bottom: 1rem !important;
-    }
-    .admin-table, .admin-table tbody, .admin-table tr, .admin-table td, .admin-table th, .admin-table thead {
-        display: table-cell !important;
-    }
-    .admin-table { display: table !important; min-width: 800px !important; }
-    .admin-table tbody { display: table-row-group !important; }
-    .admin-table tr { display: table-row !important; }
-    .admin-table thead { display: table-header-group !important; }
-    
-    .ap-product-row, .ap-order-row, .ap-user-row, .ap-sub-row {
-        display: table-row !important;
-        border: none !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        background: transparent !important;
-    }
-    
-    .ap-td-img, .ap-td-name, .ap-td-price, .ap-td-stock, .ap-td-status, .ap-td-actions, .ap-td-brand, .ap-td-category,
-    .ap-td-id, .ap-td-email, .ap-td-shipping, .ap-td-total, .ap-td-user, .ap-td-registered, .ap-td-login, .ap-td-date {
-        display: table-cell !important;
-        width: auto !important;
-        padding: 0.875rem 1.25rem !important;
-        border: none !important;
-        border-bottom: 1px solid var(--admin-border) !important;
-    }
-    
-    .ap-td-price::before, .ap-td-stock::before, .ap-td-status::before, .ap-td-total::before,
-    .ap-td-registered::before, .ap-td-login::before, .ap-td-date::before {
-        display: none !important;
-    }
-}
+
