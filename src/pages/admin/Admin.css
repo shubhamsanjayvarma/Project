@@ -2233,17 +2233,24 @@
 
     .admin-table {
         width: 100%;
-        min-width: 850px;
+        min-width: 850px !important;
     }
 
     .admin-table th {
-        padding: 0.75rem 1rem;
-        font-size: 0.65rem;
+        padding: 0.6rem 0.75rem !important;
+        font-size: 0.65rem !important;
+        white-space: nowrap;
     }
 
     .admin-table td {
-        padding: 0.75rem 1rem;
-        font-size: 0.75rem;
+        padding: 0.6rem 0.75rem !important;
+        font-size: 0.75rem !important;
+        white-space: nowrap;
+    }
+
+    .admin-table td.ap-td-name {
+        white-space: normal;
+        min-width: 160px;
     }
 
     /* Stat cards */
@@ -2529,13 +2536,17 @@
 
     /* Table */
     .admin-table {
-        min-width: 500px;
+        min-width: 850px !important;
     }
 
-    .admin-table th,
+    .admin-table th {
+        padding: 0.5rem 0.6rem !important;
+        font-size: 0.6rem !important;
+    }
+
     .admin-table td {
-        padding: 0.5rem 0.5rem;
-        font-size: 0.7rem;
+        padding: 0.5rem 0.6rem !important;
+        font-size: 0.7rem !important;
     }
 
     .ap-table-thumb {
