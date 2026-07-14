@@ -228,10 +228,9 @@
     inset: 0;
     background: linear-gradient(
         to top,
-        rgba(0, 0, 0, 0.85) 0%,
-        rgba(0, 0, 0, 0.55) 35%,
-        rgba(0, 0, 0, 0.15) 60%,
-        rgba(0, 0, 0, 0.08) 100%
+        rgba(0, 0, 0, 0.65) 0%,
+        rgba(0, 0, 0, 0.25) 45%,
+        transparent 80%
     );
 }
 
@@ -274,7 +273,7 @@
 
 .plug-cat-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
 }
 
@@ -1006,7 +1005,17 @@
     }
 
     .plug-cat-text {
-        padding: 1.5rem;
+        padding: 1rem;
+    }
+
+    .plug-cat-title {
+        font-size: 1.25rem;
+    }
+
+    .plug-cat-sublabel {
+        font-size: 0.55rem;
+        letter-spacing: 0.2em;
+        margin-bottom: 0.25rem;
     }
 
     .plug-cat-grid .plug-cat-card {
@@ -1015,6 +1024,7 @@
 
     .plug-cat-grid {
         grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
     }
 
     .plug-img-cat-grid {
@@ -1112,15 +1122,26 @@
     }
 
     .plug-cat-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
     }
 
     .plug-cat-grid .plug-cat-card {
-        height: 200px;
+        height: 180px;
     }
 
     .plug-cat-text {
-        padding: 1rem;
+        padding: 0.75rem;
+    }
+
+    .plug-cat-title {
+        font-size: 1rem;
+    }
+
+    .plug-cat-sublabel {
+        font-size: 0.48rem;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.15rem;
     }
 
     .plug-img-cat-grid {

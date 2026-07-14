@@ -113,6 +113,7 @@ const Home = () => {
         { slug: 'levis-jeans', label: "LEVI'S DENIM", sublabel: "AUTHENTIC LEVI'S", img: catLevisImg, width: 1040, height: 1040 },
         { slug: 'shorts', label: 'SHORTS', sublabel: 'VINTAGE STREETWEAR SHORTS', img: catShortsImg, width: 960, height: 1280 },
         { slug: 'japanese-jeans', label: 'JAPANESE DENIM', sublabel: 'SELVEDGE & ART', img: collectionImg, width: 1040, height: 1040 },
+        { slug: 'hip-hop-jeans', label: 'HIP HOP', sublabel: 'STREETWEAR & LOOSE', img: catHipHopImg, width: 960, height: 1280 },
     ];
 
     const categoryImages = [
