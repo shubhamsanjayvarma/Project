@@ -111,19 +111,19 @@ const Home = () => {
 
     const categoryBanners = [
         { slug: 'jeans', label: 'LATEST DROP', sublabel: 'NEW ARRIVALS', img: latestDropImg, width: 960, height: 1280 },
-        { slug: 'levis', label: "LEVI'S DENIM", sublabel: "AUTHENTIC LEVI'S", img: premiumDenimImg, width: 1040, height: 1040 },
-        { slug: 'vintage', label: 'VINTAGE', sublabel: '90s & RETRO', img: catVintageImg, width: 960, height: 1280 },
-        { slug: 'japanese', label: 'JAPANESE DENIM', sublabel: 'SELVEDGE & ART', img: collectionImg, width: 1040, height: 1040 },
+        { slug: 'levis-jeans', label: "LEVI'S DENIM", sublabel: "AUTHENTIC LEVI'S", img: premiumDenimImg, width: 1040, height: 1040 },
+        { slug: 'jeans', label: 'VINTAGE', sublabel: '90s & RETRO', img: catVintageImg, width: 960, height: 1280 },
+        { slug: 'japanese-jeans', label: 'JAPANESE DENIM', sublabel: 'SELVEDGE & ART', img: collectionImg, width: 1040, height: 1040 },
     ];
 
     const categoryImages = [
         { slug: 'jeans', name: 'JEANS', img: catJeansImg, width: 1040, height: 1040 },
-        { slug: 'levis', name: "LEVI'S", img: catLevisImg, width: 780, height: 1040 },
-        { slug: 'true-religion', name: 'TRUE RELIGION', img: catTrueReligionImg, width: 1040, height: 1040 },
-        { slug: 'japanese', name: 'JAPANESE', img: catJapaneseImg, width: 780, height: 1040 },
+        { slug: 'levis-jeans', name: "LEVI'S", img: catLevisImg, width: 780, height: 1040 },
+        { slug: 'true-religion-jeans-shorts', name: 'TRUE RELIGION', img: catTrueReligionImg, width: 1040, height: 1040 },
+        { slug: 'japanese-jeans', name: 'JAPANESE', img: catJapaneseImg, width: 780, height: 1040 },
         { slug: 'shorts', name: 'SHORTS', img: catShortsImg, width: 960, height: 1280 },
-        { slug: 'hip-hop', name: 'HIP HOP', img: catHipHopImg, width: 960, height: 1280 },
-        { slug: 'vintage', name: 'VINTAGE', img: catVintageImg, width: 780, height: 1040 },
+        { slug: 'hip-hop-jeans', name: 'HIP HOP', img: catHipHopImg, width: 960, height: 1280 },
+        { slug: 'jeans', name: 'VINTAGE', img: catVintageImg, width: 780, height: 1040 },
     ];
 
     const instagramImages = [
