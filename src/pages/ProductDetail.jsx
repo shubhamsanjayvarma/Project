@@ -268,18 +268,34 @@ const ProductDetail = () => {
                         transition={{ duration: 0.5 }}
                     >
                         {/* Brand & Category */}
-                        {product.brand && <span className="product-brand-label">{product.brand}</span>}
-                        <span className="product-category-label">{categoryName}{product.subcategory ? ` / ${product.subcategory}` : ''}</span>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '8px' }}>
+                            {product.brand && <span className="product-brand-label">{product.brand}</span>}
+                            <span className="product-category-label">{categoryName}{product.subcategory ? ` / ${product.subcategory}` : ''}</span>
+                            
+                            {/* Product Type Badge */}
+                            {product.productType && (
+                                <span className="product-meta-tag" style={{ background: 'rgba(255,255,255,0.08)', color: '#fff', fontSize: '0.68rem', padding: '2px 8px', borderRadius: '4px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                                    {product.productType === 'exact' ? 'Exact item' : 'Representative item'}
+                                </span>
+                            )}
+
+                            {/* Grade Badge */}
+                            {product.grade && (
+                                <span className="product-meta-tag" style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#10b981', border: '1px solid rgba(16, 185, 129, 0.2)', fontSize: '0.68rem', padding: '2px 8px', borderRadius: '4px', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: '600' }}>
+                                    Grade {product.grade}
+                                </span>
+                            )}
+                        </div>
                         <h1>{product.name}</h1>
 
                         {/* Price Section */}
                         <div className="product-price-section">
-                            <span className="product-current-price">{formatPrice(currentPrice)}</span>
+                            <span className="product-current-price">{formatPrice(currentPrice, product.currency)}</span>
                             {product.comparePrice && product.comparePrice > product.price && (
-                                <span className="product-original-price">{formatPrice(product.comparePrice)}</span>
+                                <span className="product-original-price">{formatPrice(product.comparePrice, product.currency)}</span>
                             )}
                             {currentPrice < product.price && (
-                                <span className="product-original-price">{formatPrice(product.price)}</span>
+                                <span className="product-original-price">{formatPrice(product.price, product.currency)}</span>
                             )}
                             <span className={`badge badge-${conditionColor}`}>{conditionLabel}</span>
                         </div>
@@ -301,7 +317,7 @@ const ProductDetail = () => {
                         {/* Description */}
                         <p className="product-description">{product.description}</p>
 
-                        {/* Product Meta Tags (Gender, Season, Materials) */}
+                        {/* Product Meta Tags (Gender, Season, Materials, Size Range) */}
                         <div className="product-meta-tags">
                             {product.gender && product.gender !== 'unisex' && (
                                 <span className="product-meta-tag">{product.gender === 'men' ? 'Men' : product.gender === 'women' ? 'Women' : product.gender}</span>
@@ -309,6 +325,11 @@ const ProductDetail = () => {
                             {product.season && product.season !== 'all-season' && (
                                 <span className="product-meta-tag">
                                     {product.season === 'spring-summer' ? 'Spring/Summer' : product.season === 'fall-winter' ? 'Fall/Winter' : product.season}
+                                </span>
+                            )}
+                            {product.sizeRangeMin && product.sizeRangeMax && (
+                                <span className="product-meta-tag" style={{ border: '1px solid rgba(252, 196, 25, 0.3)', color: '#fcc419' }}>
+                                    Waist: {product.sizeRangeMin} – {product.sizeRangeMax}
                                 </span>
                             )}
                             {product.materials?.length > 0 && product.materials.map(mat => (
@@ -341,12 +362,12 @@ const ProductDetail = () => {
                                     </div>
                                     <div className={`bulk-row ${quantity < (product.bulkPrices[0]?.minQty || 999) ? 'active' : ''}`}>
                                         <span>1 - {(product.bulkPrices[0]?.minQty || 2) - 1}</span>
-                                        <span>{formatPrice(product.price)}</span>
+                                        <span>{formatPrice(product.price, product.currency)}</span>
                                     </div>
                                     {product.bulkPrices.map((bp, i) => (
                                         <div key={i} className={`bulk-row ${quantity >= bp.minQty && (i === product.bulkPrices.length - 1 || quantity < product.bulkPrices[i + 1]?.minQty) ? 'active' : ''}`}>
                                             <span>{bp.minQty}+ units</span>
-                                            <span>{formatPrice(bp.price)}</span>
+                                            <span>{formatPrice(bp.price, product.currency)}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -379,7 +400,7 @@ const ProductDetail = () => {
                                 <input type="number" value={quantity} onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))} min="1" max={product.stock || 999} />
                                 <button onClick={() => setQuantity(Math.min(product.stock || 999, quantity + 1))}><FiPlus /></button>
                             </div>
-                            <span className="quantity-total">Total: {formatPrice(currentPrice * quantity)}</span>
+                            <span className="quantity-total">Total: {formatPrice(currentPrice * quantity, product.currency)}</span>
                         </div>
 
                         {/* Actions */}
@@ -404,7 +425,7 @@ const ProductDetail = () => {
 
                             <div className="product-actions-sticky">
                                 <div className="sticky-mobile-info">
-                                    <span className="sticky-price">{formatPrice(currentPrice * quantity)}</span>
+                                    <span className="sticky-price">{formatPrice(currentPrice * quantity, product.currency)}</span>
                                     {product.stock > 0 ? (
                                         <span className="sticky-stock in-stock">In Stock</span>
                                     ) : (

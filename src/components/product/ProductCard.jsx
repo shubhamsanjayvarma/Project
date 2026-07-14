@@ -69,21 +69,32 @@ const ProductCard = ({ product, index = 0 }) => {
                     {product.condition && product.condition !== 'good' && (
                         <span className="product-condition badge-primary">{product.condition === 'new' ? 'New' : product.condition === 'like-new' ? 'Like New' : 'Fair'}</span>
                     )}
+                    {product.grade && (
+                        <span className="product-condition" style={{ background: '#10b981', left: product.condition && product.condition !== 'good' ? '75px' : '12px' }}>
+                            Grade {product.grade}
+                        </span>
+                    )}
                 </div>
                 <div className="product-card-body">
                     {product.brand && <span className="product-card-brand">{product.brand}</span>}
                     <span className="product-card-category">{product.categoryName || product.category}</span>
                     <h3 className="product-card-name">{product.name}</h3>
                     <div className="product-card-price">
-                        <span className="product-price-current">{formatPrice(product.price)}</span>
+                        <span className="product-price-current">{formatPrice(product.price, product.currency)}</span>
                         {product.comparePrice && product.comparePrice > product.price && (
-                            <span className="product-price-original">{formatPrice(product.comparePrice)}</span>
+                            <span className="product-price-original">{formatPrice(product.comparePrice, product.currency)}</span>
                         )}
                         {product.bulkPrices?.length > 0 && (
-                            <span className="product-price-bulk">From {formatPrice(product.bulkPrices[0].price)} in bulk</span>
+                            <span className="product-price-bulk">From {formatPrice(product.bulkPrices[0].price, product.currency)} in bulk</span>
                         )}
                     </div>
-                    {product.sizes?.length > 0 && (
+                    {product.sizeRangeMin && product.sizeRangeMax ? (
+                        <div className="product-card-sizes" style={{ marginTop: '6px' }}>
+                            <span className="size-tag" style={{ border: '1px solid rgba(252, 196, 25, 0.3)', color: '#fcc419', background: 'transparent' }}>
+                                Waist {product.sizeRangeMin}–{product.sizeRangeMax}
+                            </span>
+                        </div>
+                    ) : product.sizes?.length > 0 && (
                         <div className="product-card-sizes">
                             {product.sizes.slice(0, 4).map(s => <span key={s} className="size-tag">{s}</span>)}
                             {product.sizes.length > 4 && <span className="size-tag size-more">+{product.sizes.length - 4}</span>}

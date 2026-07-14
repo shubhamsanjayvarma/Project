@@ -1038,6 +1038,427 @@
     flex-shrink: 0;
 }
 
+/* ── WIZARD PROGRESS STEPPER ── */
+.wiz-stepper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--admin-border);
+    background: rgba(255, 255, 255, 0.01);
+    flex-shrink: 0;
+    gap: 6px;
+}
+
+.wiz-stepper-item {
+    display: flex;
+    align-items: center;
+    position: relative;
+    flex: 1;
+}
+
+.wiz-stepper-item:first-child {
+    flex: 0;
+}
+
+.wiz-stepper-line {
+    height: 3px;
+    background: var(--admin-border);
+    flex: 1;
+    min-width: 50px;
+    transition: background-color 0.3s ease;
+}
+
+.wiz-stepper-line.active {
+    background: #fcc419;
+}
+
+.wiz-stepper-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--admin-border);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.wiz-stepper-item.active .wiz-stepper-dot {
+    background: #fcc419;
+    border-color: #fcc419;
+    box-shadow: 0 0 10px rgba(252, 196, 25, 0.4);
+}
+
+.wiz-stepper-item.completed .wiz-stepper-dot {
+    background: #fcc419;
+}
+
+/* ── WIZARD FOOTER NAVIGATION ── */
+.wiz-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 28px;
+    border-top: 1px solid var(--admin-border);
+    background: #09090e;
+    flex-shrink: 0;
+}
+
+.wiz-back-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--admin-text-muted) !important;
+}
+
+.wiz-back-btn:hover {
+    color: var(--admin-text) !important;
+}
+
+.wiz-next-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #fcc419 !important;
+    color: #000 !important;
+    font-weight: 600 !important;
+    border: none !important;
+    padding: 10px 24px !important;
+    border-radius: 8px !important;
+}
+
+.wiz-next-btn:hover {
+    background: #e0ab0f !important;
+}
+
+.wiz-publish-btn {
+    background: #10b981 !important;
+    color: #fff !important;
+}
+
+.wiz-publish-btn:hover {
+    background: #059669 !important;
+}
+
+/* ── STEP 1: PRODUCT TYPE CARDS ── */
+.wiz-type-cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 10px 0;
+}
+
+.wiz-type-card {
+    background: var(--admin-surface);
+    border: 1px solid var(--admin-border);
+    border-radius: 12px;
+    padding: 24px;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+}
+
+.wiz-type-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: transparent;
+    transition: background-color 0.2s;
+}
+
+.wiz-type-card:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: var(--admin-surface-hover);
+    transform: translateY(-2px);
+}
+
+.wiz-type-card.active {
+    border-color: #fcc419;
+    background: rgba(252, 196, 25, 0.03);
+}
+
+.wiz-type-card.active::after {
+    background: #fcc419;
+}
+
+.wiz-type-icon {
+    color: var(--admin-text-muted);
+    margin-bottom: 12px;
+    transition: color 0.25s;
+}
+
+.wiz-type-card.active .wiz-type-icon {
+    color: #fcc419;
+}
+
+.wiz-type-card strong {
+    font-size: 1rem;
+    color: var(--admin-text);
+    margin-bottom: 6px;
+}
+
+.wiz-type-card p {
+    font-size: 0.8rem;
+    color: var(--admin-text-muted);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* ── STEP 2: GRADING CHIPS ── */
+.wiz-grade-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.wiz-grade-chip {
+    background: var(--admin-bg);
+    border: 1px solid var(--admin-border);
+    color: var(--admin-text);
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+}
+
+.wiz-grade-chip:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    background: var(--admin-surface);
+}
+
+.wiz-grade-chip.active {
+    border-color: #10b981;
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.05);
+}
+
+.wiz-grade-description {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px dashed var(--admin-border);
+    border-radius: 8px;
+    padding: 16px;
+    margin-top: 12px;
+}
+
+.wiz-grade-description strong {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--admin-text);
+    margin-bottom: 4px;
+}
+
+.wiz-grade-description p {
+    font-size: 0.78rem;
+    color: var(--admin-text-muted);
+    margin: 0;
+    line-height: 1.45;
+}
+
+.wiz-grade-table-badge {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+/* ── STEP 2: SIZE RANGE ── */
+.wiz-size-range {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.wiz-size-range-tag {
+    font-size: 0.72rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--admin-text-muted);
+}
+
+.wiz-size-range select {
+    background: var(--admin-bg);
+    border: 1px solid var(--admin-border);
+    color: var(--admin-text);
+    padding: 8px 16px;
+    border-radius: 8px;
+    min-width: 80px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.85rem;
+}
+
+.wiz-size-range-sep {
+    color: var(--admin-text-muted);
+}
+
+/* ── SUFFIX & PREFIX INPUT WRAPPERS ── */
+.wiz-input-suffix {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.wiz-input-suffix input {
+    width: 100%;
+    padding-right: 70px !important;
+}
+
+.wiz-suffix {
+    position: absolute;
+    right: 12px;
+    font-size: 0.8rem;
+    color: var(--admin-text-muted);
+    pointer-events: none;
+}
+
+.wiz-input-prefix {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.wiz-input-prefix input {
+    width: 100%;
+    padding-left: 28px !important;
+}
+
+.wiz-prefix {
+    position: absolute;
+    left: 12px;
+    font-size: 0.85rem;
+    color: var(--admin-text-muted);
+    pointer-events: none;
+}
+
+/* ── PRICING TIERS & HEADERS ── */
+.wiz-pricing-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.wiz-currency-select {
+    background: var(--admin-bg);
+    border: 1px solid var(--admin-border);
+    color: var(--admin-text);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.wiz-pricing-row {
+    display: grid;
+    grid-template-columns: 24px 1fr 1.2fr auto;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 12px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid var(--admin-border);
+    border-radius: 8px;
+}
+
+.wiz-pricing-row-num {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--admin-text-muted);
+    text-align: center;
+}
+
+.wiz-pricing-field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    position: relative;
+}
+
+.wiz-pricing-field label {
+    font-size: 0.65rem !important;
+    margin-bottom: 0 !important;
+}
+
+.wiz-tier-delete {
+    background: none;
+    border: none;
+    color: var(--admin-text-muted);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    align-self: flex-end;
+    margin-bottom: 2px;
+}
+
+.wiz-tier-delete:hover {
+    color: #ff6b6b;
+    background: rgba(255, 107, 107, 0.1);
+}
+
+.wiz-add-tier-btn {
+    background: none;
+    border: 1.5px dashed var(--admin-border);
+    color: var(--admin-text);
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 8px;
+}
+
+.wiz-add-tier-btn:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: var(--admin-surface);
+}
+
+/* ── PRICING TIER VALIDATION ERROR ── */
+.wiz-field-error input {
+    border-color: #ff6b6b !important;
+}
+
+.wiz-field-error-msg {
+    color: #ff6b6b;
+    font-size: 0.62rem;
+    margin-top: 2px;
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+}
+
 /* ── FORM SECTIONS ── */
 .ap-section {
     background: var(--admin-surface);

@@ -2,15 +2,19 @@
  * Utility functions for the Second Thrift application
  */
 
-// Format price in EUR
-export const formatPrice = (price) => {
+// Currency symbols map
+const CURRENCY_SYMBOLS = { EUR: '€', GBP: '£', USD: '$', INR: '₹' };
+
+// Format price with optional currency support
+export const formatPrice = (price, currency = 'EUR') => {
     if (price === undefined || price === null) return '';
+    const symbol = CURRENCY_SYMBOLS[currency] || '€';
     const formattedNumber = new Intl.NumberFormat('en-US', {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
         useGrouping: false
     }).format(price);
-    return `${formattedNumber} €`;
+    return `${formattedNumber} ${symbol}`;
 };
 
 export const formatCurrency = (price, currency = 'EUR', locale = 'en-US') => {
@@ -287,12 +291,43 @@ export const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL', '3XL', 'One Size'];
 
 // Brands
 export const BRANDS = [
-    'Nike', 'Adidas', 'Zara', 'H&M', "Levi's", 'Gucci', 'Prada', 'Ralph Lauren',
-    'Tommy Hilfiger', 'Calvin Klein', 'Versace', 'Burberry', 'Louis Vuitton', 'Balenciaga',
-    'The North Face', 'Patagonia', 'Carhartt', 'Champion', 'New Balance', 'Puma',
-    'Reebok', 'Converse', 'Vans', 'Fila', 'Stussy', 'Supreme', 'Off-White',
-    'True Religion', 'Diesel', 'Hugo Boss', 'Lacoste', 'Uniqlo', 'GAP', 'Mango', 'Evisu',
-    'Unbranded', 'Other',
+    'Hip Hop Jeans', 'Hip Hop Shorts',
+    'Carhartt Jeans', 'Carhartt Shorts', 'Carhartt & Dickies Mix Shorts',
+    'Dickies Jeans', 'Dickies Shorts',
+    'Japanese Jeans', 'Japanese Shorts',
+    "Levi's Mix Code", "Levi's Jeans", "Levi's Shorts",
+    'Evisu Jeans',
+    'True Religion Jeans-Shorts',
+    'D&G-Armani', 'Miss Me', 'Rock Revival',
+    'Realtree Jeans', 'G-Star Jeans', 'Diesel Jeans',
+    'JNCO Jeans', 'Y2K Women Flared Jeans',
+    'Wrangler', 'Lee', 'Laguna Beach Jean',
+    'Jeans', 'Shorts', 'Mini Skirt', 'Women Shorts',
+    'Other',
+];
+
+// Currencies
+export const CURRENCIES = [
+    { code: 'EUR', symbol: '€', label: 'Euro (€)' },
+    { code: 'GBP', symbol: '£', label: 'Pound (£)' },
+    { code: 'USD', symbol: '$', label: 'Dollar ($)' },
+    { code: 'INR', symbol: '₹', label: 'Rupee (₹)' },
+];
+
+// Grading system
+export const GRADES = [
+    { value: 'A', label: 'Grade A', icon: '👑', title: '100% Grade A', description: 'All items in this bundle are Grade A — premium quality, minimal to no defects.' },
+    { value: 'A/B', label: 'Grade A/B', icon: '👑', title: '>70% of items are GRADE A', description: 'This bundle contains a mix of Grade A and Grade B items, with more than 70% of the items being Grade A.' },
+    { value: 'B', label: 'Grade B', icon: '👑', title: '100% Grade B', description: 'All items are Grade B — good condition with minor signs of wear.' },
+    { value: 'B/C', label: 'Grade B/C', icon: '👑', title: '>50% Grade B', description: 'A mix of Grade B and Grade C items, with the majority being Grade B quality.' },
+    { value: 'C', label: 'Grade C', icon: '👑', title: 'Grade C', description: 'Items may have visible wear, minor damage, or cosmetic imperfections. Budget-friendly.' },
+    { value: 'A/B/C', label: 'Grade A/B/C', icon: '👑', title: '>30% Grade A', description: 'This bundle contains a mix of all three grades, with more than 30% of the items being Grade A. A detailed product description can highlight the mix of grades in the bundle.' },
+];
+
+// Waist sizes for jeans/denim
+export const WAIST_SIZES = [
+    '26', '27', '28', '29', '30', '31', '32', '33', '34',
+    '36', '38', '40', '42', '44',
 ];
 
 // Colors with hex values
