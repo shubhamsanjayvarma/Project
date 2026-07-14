@@ -109,8 +109,8 @@ const Footer = () => {
                             src={stripeIcon} 
                             alt="Stripe" 
                             className="footer-stripe-logo" 
-                            width="60" 
-                            height="25" 
+                            width="80" 
+                            height="32" 
                             loading="lazy"
                         />
                     </div>
@@ -119,59 +119,59 @@ const Footer = () => {
                     <div className="footer-payment-grid">
                         {/* Visa */}
                         <div className="payment-logo-card">
-                            <img src={visaIcon} alt="Visa" className="payment-logo-img" width="38" height="24" loading="lazy" />
+                            <img src={visaIcon} alt="Visa" className="payment-logo-img" width="50" height="32" loading="lazy" />
                         </div>
                         {/* Mastercard */}
                         <div className="payment-logo-card">
-                            <img src={mastercardIcon} alt="Mastercard" className="payment-logo-img" width="38" height="24" loading="lazy" />
+                            <img src={mastercardIcon} alt="Mastercard" className="payment-logo-img" width="50" height="32" loading="lazy" />
                         </div>
                         {/* American Express */}
                         <div className="payment-logo-card">
-                            <img src={amexIcon} alt="American Express" className="payment-logo-img" width="38" height="24" loading="lazy" />
+                            <img src={amexIcon} alt="American Express" className="payment-logo-img" width="50" height="32" loading="lazy" />
                         </div>
                         {/* Apple Pay */}
                         <div className="payment-logo-card">
-                            <img src={applePayIcon} alt="Apple Pay" className="payment-logo-img" width="38" height="24" loading="lazy" />
+                            <img src={applePayIcon} alt="Apple Pay" className="payment-logo-img" width="50" height="32" loading="lazy" />
                         </div>
                         {/* Google Pay */}
                         <div className="payment-logo-card">
-                            <img src={googlePayIcon} alt="Google Pay" className="payment-logo-img" width="38" height="24" loading="lazy" />
+                            <img src={googlePayIcon} alt="Google Pay" className="payment-logo-img" width="50" height="32" loading="lazy" />
                         </div>
                         {/* Bancontact */}
                         <div className="payment-logo-card">
-                            <img src={bancontactIcon} alt="Bancontact" className="payment-logo-img" width="38" height="24" loading="lazy" />
+                            <img src={bancontactIcon} alt="Bancontact" className="payment-logo-img" width="50" height="32" loading="lazy" />
                         </div>
                         {/* Blik */}
                         <div className="payment-logo-card">
-                            <img src={blikIcon} alt="Blik" className="payment-logo-img" width="38" height="24" loading="lazy" />
+                            <img src={blikIcon} alt="Blik" className="payment-logo-img" width="50" height="32" loading="lazy" />
                         </div>
                         {/* Wero */}
                         <div className="payment-logo-card">
-                            <img src={weroIcon} alt="Wero" className="payment-logo-img" width="38" height="24" loading="lazy" />
+                            <img src={weroIcon} alt="Wero" className="payment-logo-img" width="50" height="32" loading="lazy" />
                         </div>
                         {/* Shop Pay */}
                         <div className="payment-logo-card">
-                            <img src={shoppayIcon} alt="Shop Pay" className="payment-logo-img" width="38" height="24" loading="lazy" />
+                            <img src={shoppayIcon} alt="Shop Pay" className="payment-logo-img" width="50" height="32" loading="lazy" />
                         </div>
                         {/* UnionPay */}
                         <div className="payment-logo-card">
-                            <img src={unionpayIcon} alt="UnionPay" className="payment-logo-img" width="38" height="24" loading="lazy" />
+                            <img src={unionpayIcon} alt="UnionPay" className="payment-logo-img" width="50" height="32" loading="lazy" />
                         </div>
                         {/* iDEAL (Netherlands) */}
                         <div className="payment-logo-card">
-                            <img src={idealIcon} alt="iDEAL" className="payment-logo-img" width="38" height="24" loading="lazy" />
+                            <img src={idealIcon} alt="iDEAL" className="payment-logo-img" width="50" height="32" loading="lazy" />
                         </div>
                         {/* Sofort / Klarna (Germany/Austria) */}
                         <div className="payment-logo-card">
-                            <img src={sofortIcon} alt="Sofort" className="payment-logo-img" width="38" height="24" loading="lazy" />
+                            <img src={sofortIcon} alt="Sofort" className="payment-logo-img" width="50" height="32" loading="lazy" />
                         </div>
                         {/* Giropay (Germany) */}
                         <div className="payment-logo-card">
-                            <img src={giropayIcon} alt="Giropay" className="payment-logo-img" width="38" height="24" loading="lazy" />
+                            <img src={giropayIcon} alt="Giropay" className="payment-logo-img" width="50" height="32" loading="lazy" />
                         </div>
                         {/* EPS (Austria) */}
                         <div className="payment-logo-card">
-                            <img src={epsIcon} alt="EPS" className="payment-logo-img" width="38" height="24" loading="lazy" />
+                            <img src={epsIcon} alt="EPS" className="payment-logo-img" width="50" height="32" loading="lazy" />
                         </div>
                     </div>
                 </div>
