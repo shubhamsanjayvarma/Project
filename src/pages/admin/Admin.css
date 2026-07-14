@@ -2055,6 +2055,7 @@
 
     .admin-header-logo {
         height: 24px;
+        width: auto;
         filter: brightness(1.2);
     }
 
