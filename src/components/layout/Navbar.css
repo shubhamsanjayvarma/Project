@@ -50,7 +50,7 @@
 }
 
 .navbar-logo img {
-    height: 44px;
+    height: 64px;
     width: auto;
     transition: transform 0.3s ease;
     mix-blend-mode: lighten;
