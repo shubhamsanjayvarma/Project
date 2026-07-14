@@ -7,7 +7,7 @@ import { defaultCategories } from '../services/categories';
 
 // Hero & banner images — picked for BRIGHT contrast with text overlays
 const heroImg = '/hero-bg.jpeg';
-import latestDropImg from '../assets/latest-drop-jeans.jpeg';
+import latestDropImg from '../assets/latest-drop.png';
 import premiumDenimImg from '../assets/true-religion-collection.jpeg';
 import outerwearImg from '../assets/bulk-inventory.jpeg';
 import collectionImg from '../assets/armani-dg-collection.jpeg';
