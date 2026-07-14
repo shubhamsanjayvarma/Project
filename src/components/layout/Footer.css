@@ -112,34 +112,254 @@
     padding: 0.4rem 0;
 }
 
-.footer-bottom {
+/* ===== SHOPIFY-STYLE FOOTER BOTTOM ===== */
+.footer-bottom-shopify {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    margin-top: 3.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    text-align: center;
+}
+
+.footer-currency-selector {
+    display: flex;
+    justify-content: center;
+}
+
+.currency-selector-btn {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.75rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-top: 2.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.04);
-}
-
-.footer-bottom p {
-    font-family: 'Poppins', sans-serif;
-    color: rgba(255, 255, 255, 0.2);
-    font-size: 0.75rem;
-}
-
-.footer-payment-methods {
-    display: flex;
-    gap: 0.5rem;
-}
-
-.payment-badge {
-    padding: 0.2rem 0.75rem;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    gap: 0.35rem;
+    cursor: pointer;
+    padding: 0.3rem 0.6rem;
     border-radius: 4px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.currency-selector-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+}
+
+.footer-copyright-shopify {
     font-family: 'Poppins', sans-serif;
-    font-size: 0.65rem;
-    color: rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 0.72rem;
+    margin: 0;
+}
+
+.footer-copyright-shopify a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.footer-copyright-shopify a:hover {
+    text-decoration: underline;
+}
+
+.footer-sub-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin: 0.25rem 0 0.5rem;
+}
+
+.footer-sub-links a {
+    font-family: 'Poppins', sans-serif;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.75rem;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-sub-links a:hover {
+    color: #fff;
+}
+
+.footer-payment-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+/* --- Realistic CSS-styled Payment Badges --- */
+.payment-logo-card {
+    width: 38px;
+    height: 24px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    position: relative;
+    user-select: none;
+}
+
+/* Amex */
+.payment-logo-amex {
+    background: #016fd0;
+    color: #fff;
+    font-size: 7px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    letter-spacing: -0.02em;
+}
+
+/* Apple Pay */
+.payment-logo-apple {
+    background: #fff;
+    color: #000;
+    font-size: 8px;
+    border: 1px solid #e1e1e1;
+}
+.logo-apple-icon {
+    font-size: 11px;
+    margin-right: 1px;
+    line-height: 1;
+}
+
+/* Bancontact */
+.payment-logo-bancontact {
+    background: #003b87;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 6px;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1;
+}
+.logo-bancontact-b {
+    font-weight: 900;
+    font-size: 9px;
+    color: #fff;
+}
+.logo-bancontact-text {
+    font-size: 4.5px;
+    color: #fff;
+    opacity: 0.9;
+}
+
+/* Blik */
+.payment-logo-blik {
+    background: #000;
+    color: #fff;
+    font-style: italic;
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Google Pay */
+.payment-logo-gpay {
+    background: #fff;
+    color: #3c4043;
+    font-size: 8px;
+    font-weight: 500;
+    border: 1px solid #e1e1e1;
+}
+.logo-gpay-g {
+    font-weight: bold;
+}
+.g-blue { color: #4285f4; }
+.g-red { color: #ea4335; }
+.g-yellow { color: #fbbc05; }
+.g-green { color: #34a853; }
+
+/* Wero */
+.payment-logo-wero {
+    background: #111;
+    color: #fff;
+    font-size: 7px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Mastercard / Maestro */
+.payment-logo-mastercard, .payment-logo-maestro {
+    background: #fff;
+    border: 1px solid #e1e1e1;
+}
+.mc-circles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 22px;
+    height: 14px;
+}
+.mc-circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    position: absolute;
+}
+.mc-red {
+    background: #eb001b;
+    left: 1px;
+}
+.mc-orange {
+    background: #ff5f00;
+    right: 1px;
+}
+.mc-blue {
+    background: #00a2e5;
+    right: 1px;
+}
+
+/* Shop Pay */
+.payment-logo-shoppay {
+    background: #5a31f4;
+    color: #fff;
+    font-size: 8px;
+    font-weight: 700;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.pay-text {
+    color: #9bf3f0;
+}
+
+/* UnionPay */
+.payment-logo-unionpay {
+    background: #fff;
+    border: 1px solid #e1e1e1;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.1;
+}
+.up-colors {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 5px;
+    font-weight: 800;
+}
+.up-red { color: #e41f26; }
+.up-blue { color: #007078; }
+
+/* Visa */
+.payment-logo-visa {
+    background: #0a175f;
+    color: #fff;
+    font-style: italic;
+    font-weight: 900;
+    font-size: 9px;
+    letter-spacing: -0.05em;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 @media (max-width: 768px) {
@@ -150,12 +370,6 @@
 
     .footer-brand {
         grid-column: span 2;
-    }
-
-    .footer-bottom {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
     }
 }
 
