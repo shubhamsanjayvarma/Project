@@ -14,7 +14,7 @@ import collectionImg from '../assets/armani-dg-collection.jpeg';
 import aboutImg from '../assets/second-thrift-boxed.jpeg';
 
 // Category images — updated with new uploaded images
-import catJeansImg from '../assets/true-religion-collection.jpeg';
+import catJeansImg from '../assets/jeans.png';
 import catLevisImg from '../assets/levis.png';
 import catTrueReligionImg from '../assets/true-religion-collection.jpeg';
 import catJapaneseImg from '../assets/japanese-art-jeans.jpeg';
