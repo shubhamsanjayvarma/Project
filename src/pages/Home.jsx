@@ -20,7 +20,6 @@ import catTrueReligionImg from '../assets/true-religion-collection.jpeg';
 import catJapaneseImg from '../assets/japanese-art-jeans.jpeg';
 import catShortsImg from '../assets/shorts.png';
 import catHipHopImg from '../assets/hip-hop-category.png';
-import catVintageImg from '../assets/japanese-art-jeans-2.jpeg';
 
 // Instagram grid images — diverse product shots
 import insta1 from '../assets/second-thrift-box-product.jpeg';
@@ -112,7 +111,7 @@ const Home = () => {
     const categoryBanners = [
         { slug: 'jeans', label: 'LATEST DROP', sublabel: 'NEW ARRIVALS', img: latestDropImg, width: 960, height: 1280 },
         { slug: 'levis-jeans', label: "LEVI'S DENIM", sublabel: "AUTHENTIC LEVI'S", img: catLevisImg, width: 1040, height: 1040 },
-        { slug: 'jeans', label: 'VINTAGE', sublabel: '90s & RETRO', img: catVintageImg, width: 960, height: 1280 },
+        { slug: 'shorts', label: 'SHORTS', sublabel: 'VINTAGE STREETWEAR SHORTS', img: catShortsImg, width: 960, height: 1280 },
         { slug: 'japanese-jeans', label: 'JAPANESE DENIM', sublabel: 'SELVEDGE & ART', img: collectionImg, width: 1040, height: 1040 },
     ];
 
@@ -123,7 +122,6 @@ const Home = () => {
         { slug: 'japanese-jeans', name: 'JAPANESE', img: catJapaneseImg, width: 780, height: 1040 },
         { slug: 'shorts', name: 'SHORTS', img: catShortsImg, width: 960, height: 1280 },
         { slug: 'hip-hop-jeans', name: 'HIP HOP', img: catHipHopImg, width: 960, height: 1280 },
-        { slug: 'jeans', name: 'VINTAGE', img: catVintageImg, width: 780, height: 1040 },
     ];
 
     const instagramImages = [
