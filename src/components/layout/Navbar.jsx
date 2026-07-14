@@ -41,7 +41,6 @@ const Navbar = () => {
         { to: '/', label: 'Home' },
         { to: '/shop', label: 'Shop' },
         { to: '/shop?category=bulk-deals', label: 'Bulk Deals' },
-        { to: '/shop?category=vintage', label: 'Vintage' },
         { to: '/track', label: 'Track Order' },
         { to: '/about', label: 'About' },
         { to: '/contact', label: 'Contact' },

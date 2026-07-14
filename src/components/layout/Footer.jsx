@@ -42,7 +42,6 @@ const Footer = () => {
                         <h4>Quick Links</h4>
                         <Link to="/shop">Shop All</Link>
                         <Link to="/shop?category=bulk-deals">Bulk Deals</Link>
-                        <Link to="/shop?category=vintage">Vintage</Link>
                         <Link to="/shop?category=designer">Designer</Link>
                         <Link to="/about">About Us</Link>
                     </div>
