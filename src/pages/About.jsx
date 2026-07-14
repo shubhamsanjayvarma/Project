@@ -6,7 +6,7 @@ import { FiArrowRight, FiCheckCircle, FiPackage, FiGlobe } from 'react-icons/fi'
 import aboutHeroImg from '../assets/evisu-mega-collection.jpeg';
 import storyImg from '../assets/second-thrift-branded.jpeg';
 import bannerImg from '../assets/evisu-boxed-inventory.jpeg';
-import qualityImg from '../assets/armani-dg-display.jpeg';
+import qualityImg from '../assets/quality-checked.png';
 import bulkImg from '../assets/second-thrift-boxed.jpeg';
 import shippingImg from '../assets/evisu-boxed-shipment.jpeg';
 
@@ -127,7 +127,7 @@ const About = () => {
                 </motion.div>
                 <div className="about-features-grid">
                     {[
-                        { icon: <FiCheckCircle size={24} />, title: 'QUALITY CHECKED', text: 'Every item inspected before shipping', img: qualityImg, width: 1040, height: 1040 },
+                        { icon: <FiCheckCircle size={24} />, title: 'QUALITY CHECKED', text: 'Every item inspected before shipping', img: qualityImg, width: 1040, height: 1040, contain: true },
                         { icon: <FiPackage size={24} />, title: 'BULK PRICING', text: 'Wholesale deals for smart buyers', img: bulkImg, width: 780, height: 1040 },
                         { icon: <FiGlobe size={24} />, title: 'EU SHIPPING', text: 'Fast delivery across Europe', img: shippingImg, width: 960, height: 1280 },
                     ].map((feature, idx) => (
@@ -147,6 +147,7 @@ const About = () => {
                                     height={feature.height}
                                     loading="lazy"
                                     decoding="async"
+                                    style={feature.contain ? { objectFit: 'contain', background: '#0a0a0a' } : {}}
                                 />
                                 <div className="about-feature-img-overlay" />
                             </div>
