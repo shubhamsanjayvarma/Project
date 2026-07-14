@@ -13,13 +13,13 @@ import outerwearImg from '../assets/bulk-inventory.jpeg';
 import collectionImg from '../assets/armani-dg-collection.jpeg';
 import aboutImg from '../assets/second-thrift-boxed.jpeg';
 
-// Category images — picked for variety and brightness
+// Category images — updated with new uploaded images
 import catJeansImg from '../assets/true-religion-collection.jpeg';
-import catLevisImg from '../assets/japanese-denim.jpeg';
+import catLevisImg from '../assets/levis.png';
 import catTrueReligionImg from '../assets/true-religion-collection.jpeg';
 import catJapaneseImg from '../assets/japanese-art-jeans.jpeg';
-import catShortsImg from '../assets/street-denim-mix.jpeg';
-import catHipHopImg from '../assets/evisu-warehouse.jpeg';
+import catShortsImg from '../assets/shorts.png';
+import catHipHopImg from '../assets/hip-hop-category.png';
 import catVintageImg from '../assets/japanese-art-jeans-2.jpeg';
 
 // Instagram grid images — diverse product shots
@@ -111,7 +111,7 @@ const Home = () => {
 
     const categoryBanners = [
         { slug: 'jeans', label: 'LATEST DROP', sublabel: 'NEW ARRIVALS', img: latestDropImg, width: 960, height: 1280 },
-        { slug: 'levis-jeans', label: "LEVI'S DENIM", sublabel: "AUTHENTIC LEVI'S", img: premiumDenimImg, width: 1040, height: 1040 },
+        { slug: 'levis-jeans', label: "LEVI'S DENIM", sublabel: "AUTHENTIC LEVI'S", img: catLevisImg, width: 1040, height: 1040 },
         { slug: 'jeans', label: 'VINTAGE', sublabel: '90s & RETRO', img: catVintageImg, width: 960, height: 1280 },
         { slug: 'japanese-jeans', label: 'JAPANESE DENIM', sublabel: 'SELVEDGE & ART', img: collectionImg, width: 1040, height: 1040 },
     ];
