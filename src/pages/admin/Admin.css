@@ -2223,8 +2223,11 @@
 
     /* Table — keep as table with horizontal scroll */
     .admin-table-container {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
         background: var(--admin-surface);
         border: 1px solid var(--admin-border);
         border-radius: 14px;
@@ -2239,18 +2242,24 @@
     .admin-table th {
         padding: 0.6rem 0.75rem !important;
         font-size: 0.65rem !important;
-        white-space: nowrap;
+        white-space: nowrap !important;
     }
 
     .admin-table td {
         padding: 0.6rem 0.75rem !important;
         font-size: 0.75rem !important;
-        white-space: nowrap;
+        white-space: nowrap !important;
     }
 
     .admin-table td.ap-td-name {
-        white-space: normal;
-        min-width: 160px;
+        white-space: normal !important;
+        min-width: 160px !important;
+        font-size: 0.75rem !important;
+    }
+
+    .admin-table td.ap-td-name strong {
+        font-size: 0.75rem !important;
+        font-weight: 500 !important;
     }
 
     /* Stat cards */
@@ -2542,11 +2551,24 @@
     .admin-table th {
         padding: 0.5rem 0.6rem !important;
         font-size: 0.6rem !important;
+        white-space: nowrap !important;
     }
 
     .admin-table td {
         padding: 0.5rem 0.6rem !important;
         font-size: 0.7rem !important;
+        white-space: nowrap !important;
+    }
+
+    .admin-table td.ap-td-name {
+        white-space: normal !important;
+        min-width: 150px !important;
+        font-size: 0.7rem !important;
+    }
+
+    .admin-table td.ap-td-name strong {
+        font-size: 0.7rem !important;
+        font-weight: 500 !important;
     }
 
     .ap-table-thumb {
