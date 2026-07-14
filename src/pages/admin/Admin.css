@@ -474,7 +474,8 @@
     background: var(--admin-surface);
     border: 1px solid var(--admin-border);
     border-radius: 14px;
-    overflow: hidden;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .admin-table {
