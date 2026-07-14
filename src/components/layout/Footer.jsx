@@ -85,61 +85,76 @@ const Footer = () => {
                         <Link to="/shop">Brands</Link>
                     </div>
 
+                    {/* Stripe Secured Logo */}
+                    <div className="footer-stripe-banner">
+                        <span className="stripe-secure-text">SECURED BY</span>
+                        <img 
+                            src="https://cdn.jsdelivr.net/gh/stripe/stripe-svg@master/stripe.svg" 
+                            alt="Stripe" 
+                            className="footer-stripe-logo" 
+                            width="60" 
+                            height="25" 
+                            loading="lazy"
+                        />
+                    </div>
+
                     {/* 4. Payment Badges Grid */}
                     <div className="footer-payment-grid">
-                        {/* AMEX */}
-                        <div className="payment-logo-card payment-logo-amex">
-                            <span className="logo-text-bold">AMEX</span>
-                        </div>
-                        {/* Apple Pay */}
-                        <div className="payment-logo-card payment-logo-apple">
-                            <span className="logo-apple-icon"></span>Pay
-                        </div>
-                        {/* Bancontact */}
-                        <div className="payment-logo-card payment-logo-bancontact">
-                            <span className="logo-bancontact-b">b</span>
-                            <span className="logo-bancontact-text">contact</span>
-                        </div>
-                        {/* Blik */}
-                        <div className="payment-logo-card payment-logo-blik">
-                            blik
-                        </div>
-                        {/* Google Pay */}
-                        <div className="payment-logo-card payment-logo-gpay">
-                            <span className="logo-gpay-g"><span className="g-blue">G</span><span className="g-red">o</span><span className="g-yellow">o</span><span className="g-green">g</span></span> Pay
-                        </div>
-                        {/* Wero */}
-                        <div className="payment-logo-card payment-logo-wero">
-                            wero
+                        {/* Visa */}
+                        <div className="payment-logo-card">
+                            <img src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@2.1.0/assets/cards/visa.svg" alt="Visa" className="payment-logo-img" width="38" height="24" loading="lazy" />
                         </div>
                         {/* Mastercard */}
-                        <div className="payment-logo-card payment-logo-mastercard">
-                            <div className="mc-circles">
-                                <div className="mc-circle mc-red"></div>
-                                <div className="mc-circle mc-orange"></div>
-                            </div>
+                        <div className="payment-logo-card">
+                            <img src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@2.1.0/assets/cards/mastercard.svg" alt="Mastercard" className="payment-logo-img" width="38" height="24" loading="lazy" />
                         </div>
-                        {/* Maestro */}
-                        <div className="payment-logo-card payment-logo-maestro">
-                            <div className="mc-circles">
-                                <div className="mc-circle mc-red"></div>
-                                <div className="mc-circle mc-blue"></div>
-                            </div>
+                        {/* American Express */}
+                        <div className="payment-logo-card">
+                            <img src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@2.1.0/assets/cards/amex.svg" alt="American Express" className="payment-logo-img" width="38" height="24" loading="lazy" />
+                        </div>
+                        {/* Apple Pay */}
+                        <div className="payment-logo-card">
+                            <img src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@2.1.0/assets/cards/apple-pay.svg" alt="Apple Pay" className="payment-logo-img" width="38" height="24" loading="lazy" />
+                        </div>
+                        {/* Google Pay */}
+                        <div className="payment-logo-card">
+                            <img src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@2.1.0/assets/cards/google-pay.svg" alt="Google Pay" className="payment-logo-img" width="38" height="24" loading="lazy" />
+                        </div>
+                        {/* Bancontact */}
+                        <div className="payment-logo-card">
+                            <img src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@2.1.0/assets/cards/bancontact.svg" alt="Bancontact" className="payment-logo-img" width="38" height="24" loading="lazy" />
+                        </div>
+                        {/* Blik */}
+                        <div className="payment-logo-card">
+                            <img src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@2.1.0/assets/cards/blik.svg" alt="Blik" className="payment-logo-img" width="38" height="24" loading="lazy" />
+                        </div>
+                        {/* Wero */}
+                        <div className="payment-logo-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e0/Wero_logo.svg" alt="Wero" className="payment-logo-img" width="38" height="24" loading="lazy" />
                         </div>
                         {/* Shop Pay */}
-                        <div className="payment-logo-card payment-logo-shoppay">
-                            shop<span className="pay-text">Pay</span>
+                        <div className="payment-logo-card">
+                            <img src="https://cdn.shopify.com/shopifycloud/shopify/assets/payment_icons/shop-pay-d13cf202951b14b1b81ee235ef98f5a6b0c2cb4e6f4773c38b25110d297d2600.svg" alt="Shop Pay" className="payment-logo-img" width="38" height="24" loading="lazy" />
                         </div>
                         {/* UnionPay */}
-                        <div className="payment-logo-card payment-logo-unionpay">
-                            <div className="up-colors">
-                                <span className="up-red">Union</span>
-                                <span className="up-blue">Pay</span>
-                            </div>
+                        <div className="payment-logo-card">
+                            <img src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@2.1.0/assets/cards/unionpay.svg" alt="UnionPay" className="payment-logo-img" width="38" height="24" loading="lazy" />
                         </div>
-                        {/* Visa */}
-                        <div className="payment-logo-card payment-logo-visa">
-                            VISA
+                        {/* iDEAL (Netherlands) */}
+                        <div className="payment-logo-card">
+                            <img src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@2.1.0/assets/cards/ideal.svg" alt="iDEAL" className="payment-logo-img" width="38" height="24" loading="lazy" />
+                        </div>
+                        {/* Sofort / Klarna (Germany/Austria) */}
+                        <div className="payment-logo-card">
+                            <img src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@2.1.0/assets/cards/sofort.svg" alt="Sofort" className="payment-logo-img" width="38" height="24" loading="lazy" />
+                        </div>
+                        {/* Giropay (Germany) */}
+                        <div className="payment-logo-card">
+                            <img src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@2.1.0/assets/cards/giropay.svg" alt="Giropay" className="payment-logo-img" width="38" height="24" loading="lazy" />
+                        </div>
+                        {/* EPS (Austria) */}
+                        <div className="payment-logo-card">
+                            <img src="https://cdn.jsdelivr.net/gh/datatrans/payment-logos@2.1.0/assets/cards/eps.svg" alt="EPS" className="payment-logo-img" width="38" height="24" loading="lazy" />
                         </div>
                     </div>
                 </div>

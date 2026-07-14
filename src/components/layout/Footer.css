@@ -194,172 +194,61 @@
     gap: 0.4rem;
 }
 
-/* --- Realistic CSS-styled Payment Badges --- */
+/* --- Stripe Secure Payment Banner --- */
+.footer-stripe-banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.stripe-secure-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    color: rgba(255, 255, 255, 0.4);
+    line-height: 1;
+}
+
+.footer-stripe-logo {
+    height: 24px;
+    width: auto;
+    object-fit: contain;
+    filter: brightness(0) invert(1); /* makes it clean white */
+    opacity: 0.85;
+    transition: opacity 0.2s;
+}
+
+.footer-stripe-logo:hover {
+    opacity: 1;
+}
+
+/* --- Realistic Payment Logo Card Container --- */
 .payment-logo-card {
     width: 38px;
     height: 24px;
+    background: #fff;
     border-radius: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-weight: bold;
-    font-size: 8px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     position: relative;
     user-select: none;
-}
-
-/* Amex */
-.payment-logo-amex {
-    background: #016fd0;
-    color: #fff;
-    font-size: 7px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    letter-spacing: -0.02em;
-}
-
-/* Apple Pay */
-.payment-logo-apple {
-    background: #fff;
-    color: #000;
-    font-size: 8px;
     border: 1px solid #e1e1e1;
-}
-.logo-apple-icon {
-    font-size: 11px;
-    margin-right: 1px;
-    line-height: 1;
+    padding: 2px;
 }
 
-/* Bancontact */
-.payment-logo-bancontact {
-    background: #003b87;
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    font-size: 6px;
-    flex-direction: column;
-    justify-content: center;
-    line-height: 1;
-}
-.logo-bancontact-b {
-    font-weight: 900;
-    font-size: 9px;
-    color: #fff;
-}
-.logo-bancontact-text {
-    font-size: 4.5px;
-    color: #fff;
-    opacity: 0.9;
-}
-
-/* Blik */
-.payment-logo-blik {
-    background: #000;
-    color: #fff;
-    font-style: italic;
-    font-size: 9px;
-    font-weight: 900;
-    letter-spacing: -0.05em;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-}
-
-/* Google Pay */
-.payment-logo-gpay {
-    background: #fff;
-    color: #3c4043;
-    font-size: 8px;
-    font-weight: 500;
-    border: 1px solid #e1e1e1;
-}
-.logo-gpay-g {
-    font-weight: bold;
-}
-.g-blue { color: #4285f4; }
-.g-red { color: #ea4335; }
-.g-yellow { color: #fbbc05; }
-.g-green { color: #34a853; }
-
-/* Wero */
-.payment-logo-wero {
-    background: #111;
-    color: #fff;
-    font-size: 7px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Mastercard / Maestro */
-.payment-logo-mastercard, .payment-logo-maestro {
-    background: #fff;
-    border: 1px solid #e1e1e1;
-}
-.mc-circles {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    width: 22px;
-    height: 14px;
-}
-.mc-circle {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    position: absolute;
-}
-.mc-red {
-    background: #eb001b;
-    left: 1px;
-}
-.mc-orange {
-    background: #ff5f00;
-    right: 1px;
-}
-.mc-blue {
-    background: #00a2e5;
-    right: 1px;
-}
-
-/* Shop Pay */
-.payment-logo-shoppay {
-    background: #5a31f4;
-    color: #fff;
-    font-size: 8px;
-    font-weight: 700;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-.pay-text {
-    color: #9bf3f0;
-}
-
-/* UnionPay */
-.payment-logo-unionpay {
-    background: #fff;
-    border: 1px solid #e1e1e1;
-    flex-direction: column;
-    justify-content: center;
-    line-height: 1.1;
-}
-.up-colors {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 5px;
-    font-weight: 800;
-}
-.up-red { color: #e41f26; }
-.up-blue { color: #007078; }
-
-/* Visa */
-.payment-logo-visa {
-    background: #0a175f;
-    color: #fff;
-    font-style: italic;
-    font-weight: 900;
-    font-size: 9px;
-    letter-spacing: -0.05em;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+.payment-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
 }
 
 @media (max-width: 768px) {
