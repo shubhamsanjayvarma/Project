@@ -8,7 +8,7 @@ import storyImg from '../assets/second-thrift-branded.jpeg';
 import bannerImg from '../assets/evisu-boxed-inventory.jpeg';
 import qualityImg from '../assets/quality-checked.png';
 import bulkImg from '../assets/second-thrift-boxed.jpeg';
-import shippingImg from '../assets/evisu-boxed-shipment.jpeg';
+import shippingImg from '../assets/free-shipping.jpeg';
 
 import './About.css';
 import { useSEO, JsonLd, breadcrumbSchema } from '../utils/seo';
