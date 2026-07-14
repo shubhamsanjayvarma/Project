@@ -914,11 +914,25 @@
 
 /* ── TABLE ENHANCEMENTS ── */
 .ap-table-thumb {
-    width: 40px;
-    height: 40px;
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px;
+    max-width: 40px;
+    min-height: 40px;
+    max-height: 40px;
     border-radius: 8px;
-    object-fit: cover;
+    object-fit: cover !important;
     background: var(--admin-surface);
+    display: block;
+    flex-shrink: 0;
+}
+
+/* Prevent the image td from stretching the table row */
+.admin-table td:first-child {
+    width: 50px;
+    max-width: 50px;
+    padding: 0.5rem !important;
+    vertical-align: middle;
 }
 
 .ap-no-img {
@@ -2644,9 +2658,23 @@
     }
 
     .ap-table-thumb {
-        width: 32px;
-        height: 32px;
+        width: 36px !important;
+        height: 36px !important;
+        min-width: 36px;
+        max-width: 36px;
+        min-height: 36px;
+        max-height: 36px;
         border-radius: 6px;
+        object-fit: cover !important;
+        display: block;
+    }
+
+    /* Cap the image column cell on mobile */
+    .admin-table td:first-child {
+        width: 44px !important;
+        max-width: 44px !important;
+        padding: 0.4rem 0.5rem !important;
+        vertical-align: middle !important;
     }
 
     /* Buttons */

@@ -299,7 +299,7 @@ const AdminProducts = () => {
                 ) : filteredProducts.length === 0 ? (<tr><td colSpan={9} style={{ textAlign: 'center', padding: '40px', color: 'var(--text-muted)' }}>No products found</td></tr>
                 ) : filteredProducts.map(product => (
                     <tr key={product.id} className="ap-product-row">
-                        <td className="ap-td-img">{product.images?.[0] ? (<SmartMedia src={product.images[0]} alt="" className="ap-table-thumb" style={{ width: '100%', height: '100%', objectFit: 'cover' }} videoProps={{ autoPlay: false }} />) : <div className="ap-table-thumb ap-no-img"><FiImage size={16} /></div>}</td>
+                        <td className="ap-td-img">{product.images?.[0] ? (<SmartMedia src={product.images[0]} alt="" className="ap-table-thumb" style={{ objectFit: 'cover' }} videoProps={{ autoPlay: false }} />) : <div className="ap-table-thumb ap-no-img"><FiImage size={16} /></div>}</td>
                         <td className="ap-td-name"><strong>{product.name}</strong>{product.featured && <FiStar size={12} style={{ color: '#ECC94B', marginLeft: 6 }} />}</td>
                         <td className="ap-td-brand"><span className="ap-brand-badge">{product.brand || '\u2014'}</span></td>
                         <td className="ap-td-category">{defaultCategories.find(c => c.slug === product.category)?.name || product.category}</td>
