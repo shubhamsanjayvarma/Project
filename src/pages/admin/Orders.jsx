@@ -401,7 +401,7 @@ const AdminOrders = () => {
                                 <h4 style={{ fontSize: 'var(--text-sm)', color: 'var(--text-muted)', marginBottom: 'var(--space-2)' }}>Customer Details</h4>
                                 <div style={{ fontSize: 'var(--text-sm)', lineHeight: 1.8, marginBottom: 'var(--space-5)', padding: 'var(--space-3)', background: 'var(--bg-surface)', borderRadius: 'var(--radius-md)' }}>
                                     <div><strong>{selectedOrder.shippingAddress?.name}</strong></div>
-                                    <div>{selectedOrder.userEmail}</div>
+                                    <div style={{ wordBreak: 'break-all', overflowWrap: 'break-word' }}>{selectedOrder.userEmail}</div>
                                     <div>Tel: {selectedOrder.shippingAddress?.phone || 'N/A'}</div>
                                     <div style={{ fontSize: 'var(--text-xs)', color: 'var(--text-muted)', marginTop: '4px' }}>UID: {selectedOrder.userId?.substring(0, 12)}...</div>
                                     
