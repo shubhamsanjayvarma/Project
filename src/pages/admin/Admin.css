@@ -34,6 +34,16 @@
     box-sizing: border-box;
 }
 
+/* Hide number input spinners */
+.admin-theme input[type="number"]::-webkit-inner-spin-button,
+.admin-theme input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.admin-theme input[type="number"] {
+    -moz-appearance: textfield;
+}
+
 .admin-loading {
     display: flex;
     align-items: center;
@@ -2348,6 +2358,34 @@
 
     label {
         font-size: 16px !important;
+    }
+
+    /* Stack wizard pricing rows vertically on mobile to give inputs full width */
+    .wiz-pricing-row {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 12px !important;
+        position: relative !important;
+        padding: 2.5rem 1rem 1rem 1rem !important;
+    }
+
+    .wiz-pricing-row-num {
+        position: absolute !important;
+        top: 14px !important;
+        left: 14px !important;
+        font-size: 0.85rem !important;
+    }
+
+    .wiz-tier-delete {
+        position: absolute !important;
+        top: 8px !important;
+        right: 8px !important;
+        margin: 0 !important;
+    }
+
+    .wiz-input-suffix input {
+        padding-right: 55px !important;
     }
 
     /* Chips (sizes, materials) */
