@@ -17,9 +17,15 @@ export const createOrder = async (orderData) => {
 };
 
 export const getOrdersByUser = async (userId) => {
-    const q = query(ordersRef, where('userId', '==', userId), orderBy('createdAt', 'desc'));
+    const q = query(ordersRef, where('userId', '==', userId));
     const snapshot = await getDocs(q);
-    return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    const orders = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    // Sort in-memory by createdAt descending
+    return orders.sort((a, b) => {
+        const timeA = a.createdAt?.toMillis ? a.createdAt.toMillis() : (a.createdAt ? new Date(a.createdAt).getTime() : 0);
+        const timeB = b.createdAt?.toMillis ? b.createdAt.toMillis() : (b.createdAt ? new Date(b.createdAt).getTime() : 0);
+        return timeB - timeA;
+    });
 };
 
 export const getAllOrders = async () => {
